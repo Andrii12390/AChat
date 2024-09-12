@@ -1,9 +1,20 @@
 import Image from "next/image";
+import React from "react";
 
-export default function ChatItem({ profileImage, username, lastMessage }) {
+type ChatItemProps = {
+  profileImage: string;
+  username: string;
+  lastMessage: {
+    time: string;
+    text: string;
+  };
+};
+
+
+const ChatItem: React.FC<ChatItemProps> = ({ profileImage, username, lastMessage }) => {
   return (
     <div className="flex">
-      <Image src={profileImage} width={35} className="rounded-full" />
+      <Image src={profileImage} width={35} className="rounded-full" alt="profile image"/>
       <div className="w-full flex flex-col justify-between ml-1 text-white">
         <div className="flex items-center justify-between">
           <div className="text-sm">{username}</div>
@@ -14,3 +25,5 @@ export default function ChatItem({ profileImage, username, lastMessage }) {
     </div>
   );
 }
+
+export default ChatItem

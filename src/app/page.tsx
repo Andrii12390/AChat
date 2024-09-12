@@ -4,8 +4,9 @@ import ChatHeader from "./components/ChatHeader";
 import MessageList from "./components/MessageList";
 import ChatFooter from "./components/ChatFooter";
 import ChatList from "./components/ChatList";
+import React from "react";
 
-const MainPage = () => {
+const MainPage: React.FC = () => {
   return (
     <div>
       <div className="flex h-dvh">

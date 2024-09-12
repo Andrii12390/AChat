@@ -1,6 +1,12 @@
 import React from "react";
 
-const FormInput = ({type, placeholder, Icon}) => {
+type FormInputProps = {
+  type: string;
+  placeholder: string;
+  Icon: React.ElementType;
+}
+
+const FormInput: React.FC<FormInputProps> = ({type, placeholder, Icon}) => {
   return (
     <div className="flex gap-x-2 items-center">
       <Icon className="w-5 text-gray-900" />
