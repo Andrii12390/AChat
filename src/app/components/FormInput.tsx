@@ -9,10 +9,10 @@ type FormInputProps = {
 }
 
 const FormInput: React.FC<FormInputProps> = ({type, placeholder, Icon, name}) => {
-  const { register, formState: { errors } } = useFormContext();
+  const { register } = useFormContext();
   return (
-    <div className="flex gap-x-2 items-center">
-      <Icon className="w-5 text-gray-900" />
+    <div className="flex items-center relative">
+      <Icon className="w-[18px] text-gray-900 absolute -left-6" />
       <input
         {...register(name)}
         type={type}

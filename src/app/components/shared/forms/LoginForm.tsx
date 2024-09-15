@@ -1,5 +1,7 @@
+'use client'
+
 import React from "react";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formLoginSchema, TFormLoginValues } from "./schemas";
 import FormInput from "../../FormInput";
@@ -19,6 +21,7 @@ export const LoginForm: React.FC = () => {
 
   const onSubmit = async (data: TFormLoginValues) => {
     try {
+      console.log(data)
       const resp = await signIn("credentials", {
         ...data,
         redirect: false,
@@ -34,7 +37,7 @@ export const LoginForm: React.FC = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="mt-60 p-2 h-fit flex flex-col gap-y-4"
       >
-        <h1 className="text-center text-2xl text-gray-800 ml-6 font-semibold">
+        <h1 className="text-center text-2xl text-gray-800 font-semibold">
           Login
         </h1>
         <FormInput
@@ -49,14 +52,9 @@ export const LoginForm: React.FC = () => {
           placeholder="Password"
           Icon={Lock}
         />
-        <div className="flex justify-between ml-7 pt-3">
-          <Link href="/" className="text-xs text-gray-600">
-            Forgot password?
+          <Link href="/registration" className="text-xs text-gray-600 ml-1">
+            Don't have account?
           </Link>
-          <Link href="/registration" className="text-xs text-gray-600">
-            Create account
-          </Link>
-        </div>
         <div className="flex justify-center">
           <FormButton text="Login" />
         </div>

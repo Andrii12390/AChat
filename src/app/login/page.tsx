@@ -1,8 +1,6 @@
-'use client';
-
 import "../globals.css";
 import React from "react";
-import { LoginForm } from "../components/shared/forms/login";
+import { LoginForm } from "../components/shared/forms/LoginForm";
 
 const Login: React.FC = () => {
   return (
