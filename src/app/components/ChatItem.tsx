@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-type ChatItemProps = {
+interface ChatItemProps {
   profileImage: string;
   username: string;
   lastMessage: {
@@ -11,7 +11,7 @@ type ChatItemProps = {
 };
 
 
-const ChatItem: React.FC<ChatItemProps> = ({ profileImage, username, lastMessage }) => {
+export const ChatItem: React.FC<ChatItemProps> = ({ profileImage, username, lastMessage }) => {
   return (
     <div className="flex">
       <Image src={profileImage} width={35} className="rounded-full" alt="profile image"/>
@@ -25,5 +25,3 @@ const ChatItem: React.FC<ChatItemProps> = ({ profileImage, username, lastMessage
     </div>
   );
 }
-
-export default ChatItem

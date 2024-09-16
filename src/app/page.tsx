@@ -1,9 +1,6 @@
 import "./globals.css";
 import profileImage from "./images/profile-img.jpg"
-import ChatHeader from "./components/ChatHeader";
-import MessageList from "./components/MessageList";
-import ChatFooter from "./components/ChatFooter";
-import ChatList from "./components/ChatList";
+import { ChatHeader, MessageList, ChatFooter, ChatList } from "./components";
 import React from "react";
 
 const MainPage: React.FC = () => {

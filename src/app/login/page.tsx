@@ -1,6 +1,6 @@
 import "../globals.css";
 import React from "react";
-import { LoginForm } from "../components/shared/forms/LoginForm";
+import { LoginForm } from "../components";
 
 const Login: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import { Send } from "lucide-react";
 import React from 'react';
 
-const ChatFooter: React.FC = () => {
+export const ChatFooter: React.FC = () => {
   return (
     <div className="p-2 border-t border-white/10 flex items-center">
       <input
@@ -13,5 +13,3 @@ const ChatFooter: React.FC = () => {
     </div>
   );
 }
-
-export default ChatFooter

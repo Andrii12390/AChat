@@ -1,8 +1,8 @@
-import ChatItem from "./ChatItem"
+import { ChatItem } from './'
 import profileImage from "../images/profile-img.jpg"
 import React from "react"
 
-const ChatList: React.FC = () => {
+export const ChatList: React.FC = () => {
   return (
     <div className="w-80 bg-slate-900 border-r border-white/10 flex flex-col py-2 pb-10 px-2 gap-y-3 overflow-y-auto scroll-smooth no-scrollbar">
     <input
@@ -18,5 +18,3 @@ const ChatList: React.FC = () => {
   </div>
   )
 }
-
-export default ChatList

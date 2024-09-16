@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-type MessageItemProps = {
+interface MessageItemProps {
   text: string;
   time: string;
   profileImage: string;
   isSender: boolean;
 }
 
-const MessageItem: React.FC<MessageItemProps> = ({ text, time, profileImage, isSender }) => {
+export const MessageItem: React.FC<MessageItemProps> = ({ text, time, profileImage, isSender }) => {
   return (
     <div className={`flex gap-2 items-end h-fit ${isSender && "ml-auto"}`}>
       {!isSender && <Image src={profileImage} className="size-[35px] rounded-full" alt="profile image"/>}
@@ -24,5 +24,3 @@ const MessageItem: React.FC<MessageItemProps> = ({ text, time, profileImage, isS
     </div>
   );
 }
-
-export default MessageItem

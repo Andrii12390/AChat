@@ -7,11 +7,11 @@ type User = {
   activeStatus: string;
 }
 
-type chatHeaderProps = {
+interface chatHeaderProps {
   user: User;
 }
 
-const ChatHeader: React.FC<chatHeaderProps> = ({user}) => {
+export const ChatHeader: React.FC<chatHeaderProps> = ({user}) => {
   return (
     <div className="border-b border-white/10 p-2">
       <div className="flex gap-2 items-center">
@@ -24,5 +24,3 @@ const ChatHeader: React.FC<chatHeaderProps> = ({user}) => {
     </div>
   );
 }
-
-export default ChatHeader

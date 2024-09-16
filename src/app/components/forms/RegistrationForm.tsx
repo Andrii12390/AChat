@@ -4,11 +4,9 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TFormRegisterValues, formRegisterSchema } from "./schemas";
-import FormInput from "../../FormInput";
-import FormButton from "../../FormButton";
+import { FormInput, FormButton } from "../";
 import { UserRound, Lock } from "lucide-react";
-import { signIn } from "next-auth/react";
-import { registerUser } from "../../../actions";
+import { registerUser } from "../../actions";
 
 export const RegistrationForm: React.FC = () => {
   const form = useForm<TFormRegisterValues>({
