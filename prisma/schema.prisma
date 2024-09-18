@@ -9,11 +9,64 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id                Int      @id @default(autoincrement())
+  username          String
+  password          String
 
-  username String
-  password String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  conversations     ConversationOnUser[] 
+  seenMessages      UserOnSeenMessages[] 
+  messages          Message[]            
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
- 
+
+model Conversetion {
+  id                Int      @id @default(autoincrement())
+  lastMessageAt     DateTime @default(now())
+  isGroup           Boolean?
+  title             String?
+
+  messages          Message[]              
+  participants      ConversationOnUser[]   
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Message {
+  id                Int      @id @default(autoincrement())
+  text              String?
+  image             String?
+
+  senderId          Int
+  sender            User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  conversationId    Int
+  conversation      Conversetion @relation(fields: [conversationId], references: [id], onDelete: Cascade) 
+
+  seenByUsers       UserOnSeenMessages[] 
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model ConversationOnUser {
+  userId            Int
+  conversationId    Int
+
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation      Conversetion  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@id([userId, conversationId])
+}
+
+model UserOnSeenMessages {
+  userId            Int
+  messageId         Int
+
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  message           Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@id([userId, messageId])
+}
