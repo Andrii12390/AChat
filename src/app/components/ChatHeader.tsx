@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 type User = {
-  profileImage: string;
+  profileImage: any;
   username: string;
   activeStatus: string;
 }

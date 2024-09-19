@@ -1,8 +1,7 @@
-"use client"
-
+import { SessionContext, ToasterContext } from "./context";
 import "./globals.css"
 import React from "react";
-import { SessionWrapper } from "./components";
+
 
 export default function RootLayout({
   children,
@@ -10,10 +9,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <SessionWrapper>
+    <SessionContext>
       <html lang="en">
-        <body className="min-h-dvh">{children}</body>
+        <body className="min-h-dvh">
+          <ToasterContext />
+          {children}
+        </body>
       </html>
-    </SessionWrapper>
+    </SessionContext>
   )
 }

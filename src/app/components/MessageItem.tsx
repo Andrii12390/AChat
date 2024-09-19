@@ -4,7 +4,7 @@ import React from "react";
 interface MessageItemProps {
   text: string;
   time: string;
-  profileImage: string;
+  profileImage: any;
   isSender: boolean;
 }
 

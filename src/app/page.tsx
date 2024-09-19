@@ -1,27 +1,13 @@
-import "./globals.css";
-import profileImage from "./images/profile-img.jpg"
-import { ChatHeader, MessageList, ChatFooter, ChatList } from "./components";
 import React from "react";
+import { LoginForm } from "./components";
 
-const MainPage: React.FC = () => {
+const Login: React.FC = () => {
+
   return (
-    <div>
-      <div className="flex h-dvh">
-        <ChatList />
-        <div className="bg-slate-900 w-full flex flex-col text-white">
-          <ChatHeader
-            user={{
-              username: "Andrii",
-              activeStatus: "online",
-              profileImage: profileImage,
-            }}
-          />
-          <MessageList />
-          <ChatFooter />
-        </div>
-      </div>
-    </div>
+    <main className="h-dvh text-white flex justify-center bg-gradient-to-tr from-blue-300 to-purple-300">
+     <LoginForm />
+    </main>
   );
 };
 
-export default MainPage;
+export default Login;

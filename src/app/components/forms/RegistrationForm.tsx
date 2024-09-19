@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -7,8 +7,14 @@ import { TFormRegisterValues, formRegisterSchema } from "./schemas";
 import { FormInput, FormButton } from "../";
 import { UserRound, Lock } from "lucide-react";
 import { registerUser } from "../../actions";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const RegistrationForm: React.FC = () => {
+  const router = useRouter();
+
   const form = useForm<TFormRegisterValues>({
     resolver: zodResolver(formRegisterSchema),
     defaultValues: {
@@ -23,10 +29,25 @@ export const RegistrationForm: React.FC = () => {
       const body = {
         username: data.username,
         password: data.password
-      }
+      };
+
       const resp = await registerUser(data);
+      if (resp) {
+        toast.success("You are successfully registered!");
+        const loginResponse = await signIn('credentials', {
+          ...body,
+          redirect: false,
+        });
+        if (loginResponse?.ok) {
+          router.push('/chat');
+        } else if (loginResponse?.error) {
+          toast.error("Login after registration failed!");
+        }
+      }
     } catch (error) {
-      console.error("Login error:", error);
+      const err = error as Error;
+      toast.error(err.message);
+      console.error("Registration error:", error);
     }
   };
 
@@ -57,8 +78,10 @@ export const RegistrationForm: React.FC = () => {
           placeholder="Confirm Password"
           Icon={Lock}
         />
-
-        <div className="flex justify-center mt-2">
+        <Link href="/" className="text-xs text-gray-600 ml-1">
+          Already have an account?
+        </Link>
+        <div className="flex justify-center">
           <FormButton text="Register" />
         </div>
       </form>
