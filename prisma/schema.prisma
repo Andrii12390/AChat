@@ -21,7 +21,7 @@ model User {
   updatedAt         DateTime @updatedAt
 }
 
-model Conversetion {
+model Conversation {
   id                Int      @id @default(autoincrement())
   lastMessageAt     DateTime @default(now())
   isGroup           Boolean?
@@ -43,7 +43,7 @@ model Message {
   sender            User @relation(fields: [senderId], references: [id], onDelete: Cascade)
 
   conversationId    Int
-  conversation      Conversetion @relation(fields: [conversationId], references: [id], onDelete: Cascade) 
+  conversation      Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade) 
 
   seenByUsers       UserOnSeenMessages[] 
 
@@ -53,10 +53,11 @@ model Message {
 
 model ConversationOnUser {
   userId            Int
+  username          String
   conversationId    Int
 
   user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  conversation      Conversetion  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  conversation      Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
   @@id([userId, conversationId])
 }

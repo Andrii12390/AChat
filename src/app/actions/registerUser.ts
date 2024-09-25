@@ -1,7 +1,7 @@
 'use server';
 
-import { prisma } from "../../prisma/prisma-client";
-import bcrypt from "bcrypt";
+import { prisma } from "../../../prisma/prisma-client";
+import bcrypt from "bcryptjs"
 
 export async function registerUser (data: {username: string, password: string;}) {
   const user = await prisma.user.findFirst({

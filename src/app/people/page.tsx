@@ -1,11 +1,18 @@
-import profileImage from "../images/profile-img.jpg"
-import { ChatHeader, MessageList, ChatFooter, ChatList } from "../components";
 import React from "react";
+import { ChatPrompt } from "../components/";
 
 const Chat: React.FC = () => {
   return (
-      <main className="flex h-dvh">
-        <ChatList />
+      <main className="pl-72 h-dvh">
+        <ChatPrompt />
+      </main>
+  );
+};
+
+export default Chat;
+
+
+  {/* <ChatList />
         <div className="bg-slate-900 w-full flex flex-col text-white">
           <ChatHeader
             user={{
@@ -16,10 +23,4 @@ const Chat: React.FC = () => {
           />
           <MessageList />
           <ChatFooter />
-        </div>
-
-      </main>
-  );
-};
-
-export default Chat;
+        </div> */}

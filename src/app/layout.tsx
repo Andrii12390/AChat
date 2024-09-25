@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <SessionContext>
       <html lang="en">
-        <body className="min-h-dvh">
+        <body className="h-dvh">
           <ToasterContext />
           {children}
         </body>

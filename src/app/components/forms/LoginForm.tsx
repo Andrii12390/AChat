@@ -17,7 +17,7 @@
 
     useEffect(() => {
       if (session?.status === "authenticated") {
-        router.push('/chat');
+        router.push('/people');
       }
     }, [session?.status, router]);
     const form = useForm<TFormLoginValues>({

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TFormRegisterValues, formRegisterSchema } from "./schemas";
 import { FormInput, FormButton } from "../";
 import { UserRound, Lock } from "lucide-react";
-import { registerUser } from "../../actions";
+import { registerUser } from "../../actions/registerUser";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
