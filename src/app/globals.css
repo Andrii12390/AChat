@@ -11,3 +11,7 @@ body {
   width: 0;
   background: transparent;
 }
+
+.words-break {
+  word-break: break-word;
+}

@@ -25,13 +25,13 @@ export function ConversationItem({data, isSelected, currentUser}: ConversationIt
   const router = useRouter();
   
   const onClick = useCallback(() => {
-    router.push(`/conversation/${data.id}`);
+    router.push(`/conversations/${data.id}`);
   }, [data.id, router])
 
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || []
-    return messages[messages.length - 1]
+    return messages[0]
   }, [data.messages])
 
   const username = useMemo(() => {
@@ -47,13 +47,13 @@ export function ConversationItem({data, isSelected, currentUser}: ConversationIt
   }, [])
 
   return (
-    <div onClick={onClick} className={`py-2 px-3 flex items-center gap-x-2 ${isSelected && "bg-black"}`}>
+    <div onClick={onClick} className={`py-2 px-3 flex items-center gap-x-2 cursor-pointer ${isSelected && "bg-black"}`}>
       <Image alt="user image" className="w-10 h-10 rounded-full" src={profileImage}/>
       <div className="flex flex-col justify-between">
-        <div className="text-sm">
+        <div className="text-sm max-w-52 overflow-hidden">
             {otherParticipant.username}
         </div>
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-gray-500 max-w-52 overflow-hidden">
             {lastMessageText}
         </div>
       </div>

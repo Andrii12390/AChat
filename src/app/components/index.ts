@@ -9,4 +9,10 @@ export { Sidebar } from "./Sidebar";
 export { SidebarItem } from "./SidebarItem";
 export { UserItem } from "./UserItem";
 export { UsersList } from "./UsersList";
+export { ChatHeader } from "./ChatHeader";
+export { MessageList } from "./MessageList";
+export { MessageComposer } from "./MessageComposer";
+export { MessageInput } from "./MessageInput";
+export { MessageItem } from "./MessageItem";
+
 
