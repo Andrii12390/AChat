@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import getUser from "../../actions/getUser"
 import { prisma } from "../../../../prisma/prisma-client";
+import { pusherServer } from "../../libs/pusher";
+
 
 export async function POST(request: Request) {
   try {
@@ -27,10 +29,11 @@ export async function POST(request: Request) {
       },
       include: {
         sender: true, // Повертаємо також дані відправника
-        conversation: true, // Повертаємо дані про розмову
+        conversation: true, 
       },
     });
-  
+
+
     const updatedConversation = await prisma.conversation.update({
       where: {
         id: conversationId,
@@ -44,9 +47,21 @@ export async function POST(request: Request) {
         }
       },
       include: {
-        participants: true
+        participants: true,
+        messages: true
       }
     });
+
+    await pusherServer.trigger(conversationId.toString(), 'messages:new', newMessage)
+
+    const lastMessage = updatedConversation.messages[updatedConversation.messages.length - 1]
+
+    updatedConversation.participants.map((participant) => {
+      pusherServer.trigger(participant.username!, 'conversation:update', {
+        id: conversationId,
+        messages: [lastMessage]
+      })
+    })
 
     return NextResponse.json(newMessage);
   } catch (error: any) {

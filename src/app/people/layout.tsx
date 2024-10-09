@@ -1,5 +1,6 @@
 import getUsers from "../actions/getUsers"
-import { Sidebar, UsersList } from "../components/"
+import { MobileSidebar, Sidebar, UsersList } from "../components/"
+
 
 export default async function ChatLayout({
   children
@@ -12,6 +13,9 @@ export default async function ChatLayout({
         <Sidebar>
           <UsersList users={users}/>
         </Sidebar>
+        <MobileSidebar>
+          <UsersList users={users}/>
+        </MobileSidebar>
         <main>
           {children}
         </main>

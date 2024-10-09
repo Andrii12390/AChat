@@ -1,7 +1,7 @@
 import getChatById from "../../actions/getChatById";
 import getMessages from "../../actions/getMessages";
 import getUser from "../../actions/getUser";
-import { ChatHeader, ChatPrompt, MessageComposer, MessageList } from "../../components/";
+import { ChatHeader, MessageComposer, MessageList } from "../../components/";
 
 async function Chat({ params }: { params: { id: string } }) {
   const conversation = await getChatById(Number(params.id));
@@ -15,7 +15,7 @@ async function Chat({ params }: { params: { id: string } }) {
     );
   }
   return (
-    <div className="h-full ml-72 flex flex-col">
+    <div className="h-full lg:ml-72 md:ml-72 flex flex-col">
       <ChatHeader conversation={conversation} user={user}/>
       <MessageList messages={messages} />
       <MessageComposer />

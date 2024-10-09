@@ -1,9 +1,13 @@
 import React from "react";
 
-export const ChatPrompt: React.FC = () => {
+interface ChatPromptProps {
+  text: string;
+}
+
+export const ChatPrompt: React.FC<ChatPromptProps> = ({ text }) => {
   return (
     <div className="h-full flex justify-center pt-72 font-semibold text-xl bg-gray-50">
-      Select chat or start new
+      {text}
     </div>
-  )
-}
+  );
+};

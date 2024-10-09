@@ -19,7 +19,8 @@ export const UserItem: React.FC<UserItemProps> = ({data}) => {
   const onClick = useCallback(() => {
     setIsLoading(true);
     axios.post('api/conversations', {
-      userId: data.id
+      userId: data.id,
+      action: "create"
     }).then((data) => {
       router.push(`/conversations/${data.data}`)
     }).finally(() => setIsLoading(false))
@@ -27,7 +28,7 @@ export const UserItem: React.FC<UserItemProps> = ({data}) => {
   return (
     <div className="w-full py-2 px-3">
       <div className="flex gap-x-3">
-        <Image alt="user image" className="w-7 h-7 rounded-full" src={profileImage}/>
+        <Image alt="user image" className="w-10 h-10 rounded-full" src={profileImage}/>
         <div className="w-full flex items-center justify-between">
           <div>
             {data.username}

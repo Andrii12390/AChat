@@ -10,7 +10,7 @@ const getMessages = async(conversationId: number) => {
         sender: true,
       },
       orderBy: {
-        createdAt: 'asc',  // щоб отримати повідомлення у хронологічному порядку
+        createdAt: 'asc', 
       },
     });
     return messages

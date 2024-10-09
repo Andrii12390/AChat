@@ -1,6 +1,6 @@
 import getAllConversations from "../actions/getAllConversations"
 import getUser from "../actions/getUser";
-import { Sidebar, ConversationList } from "../components/"
+import { Sidebar, ConversationList, MobileSidebar } from "../components/"
 
 export default async function ConversationsLayout({
   children
@@ -10,10 +10,11 @@ export default async function ConversationsLayout({
   const conversations = await getAllConversations();
   const currentUser = await getUser()
   return (
-      <div className="h-full">
+      <div className="h-dvh">
           <Sidebar>
             <ConversationList  list={conversations} currentUser={currentUser!}/>
            </Sidebar>
+           
           {children}
       </div>
   )

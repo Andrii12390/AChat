@@ -25,3 +25,20 @@ export type CustomConversation = {
   }[];
 }
 
+export type extendedMessage = {
+    sender: {
+        id: number;
+        username: string;
+        password: string;
+        createdAt: Date;
+        updatedAt: Date;
+    };
+
+    id: number;
+    text: string | null;
+    image: string | null;
+    senderId: number;
+    conversationId: number;
+    createdAt: Date;
+    updatedAt: Date;
+}

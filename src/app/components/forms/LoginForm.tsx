@@ -37,7 +37,7 @@
         });
         if (resp?.ok) {
           toast.success("You are succusfully logged in!")
-          router.push('/chat')
+          router.push('/people')
         } else if (resp?.error) {
           toast.error("Invalid credentials!")
         }

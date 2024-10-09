@@ -39,7 +39,7 @@ export const RegistrationForm: React.FC = () => {
           redirect: false,
         });
         if (loginResponse?.ok) {
-          router.push('/chat');
+          router.push('/people');
         } else if (loginResponse?.error) {
           toast.error("Login after registration failed!");
         }

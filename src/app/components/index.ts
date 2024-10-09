@@ -14,5 +14,6 @@ export { MessageList } from "./MessageList";
 export { MessageComposer } from "./MessageComposer";
 export { MessageInput } from "./MessageInput";
 export { MessageItem } from "./MessageItem";
+export { MobileSidebar } from "./MobileSidebar"; 
 
 
