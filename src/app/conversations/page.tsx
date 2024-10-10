@@ -1,19 +1,28 @@
-import React from 'react'
-import { ChatPrompt, ConversationList, MobileSidebar } from '../components'
-import getAllConversations from '../actions/getAllConversations';
-import getUser from '../actions/getUser';
+import {
+  ChatPrompt,
+  ConversationList,
+  MobileSidebar,
+  Sidebar,
+} from "../components";
+import { 
+  getUser,
+  getAllConversations 
+} from "../actions";
 
 export default async function page() {
   const conversations = await getAllConversations();
-  const currentUser = await getUser()
+  const currentUser = await getUser();
   return (
-    <div className="h-full lg:pl-72 md:pl-72">
+    <div className="h-full ">
+      <Sidebar>
+        <ConversationList list={conversations} currentUser={currentUser!} />
+      </Sidebar>
       <MobileSidebar>
-           <ConversationList  list={conversations} currentUser={currentUser!}/>
+        <ConversationList list={conversations} currentUser={currentUser!} />
       </MobileSidebar>
-      <div className="h-full sm:hidden lg:block md:block">
-        <ChatPrompt text="Click on someone to open chat"/>
+      <div className="pl-72 h-full sm:hidden lg:block md:block">
+        <ChatPrompt text="Click on someone to open chat" />
       </div>
     </div>
-  )
+  );
 }

@@ -1,15 +1,14 @@
-'use client';
+"use client";
 
-import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TFormRegisterValues, formRegisterSchema } from "./schemas";
-import { FormInput, FormButton } from "../";
 import { UserRound, Lock } from "lucide-react";
-import { registerUser } from "../../actions/registerUser";
-import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { FormInput, FormButton } from "../";
+import { registerUser } from "../../actions";
+import toast from "react-hot-toast";
 import Link from "next/link";
 
 export const RegistrationForm: React.FC = () => {
@@ -28,18 +27,18 @@ export const RegistrationForm: React.FC = () => {
     try {
       const body = {
         username: data.username,
-        password: data.password
+        password: data.password,
       };
 
       const resp = await registerUser(data);
       if (resp) {
         toast.success("You are successfully registered!");
-        const loginResponse = await signIn('credentials', {
+        const loginResponse = await signIn("credentials", {
           ...body,
           redirect: false,
         });
         if (loginResponse?.ok) {
-          router.push('/people');
+          router.push("/people");
         } else if (loginResponse?.error) {
           toast.error("Login after registration failed!");
         }

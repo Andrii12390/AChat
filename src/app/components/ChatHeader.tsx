@@ -4,10 +4,10 @@ import { Conversation, User } from "@prisma/client";
 import useParticipant from "../hooks/useParticipant";
 import profileImage from "../images/profile-img.jpg";
 import Image from "next/image";
-import { EllipsisVertical, Trash2 } from "lucide-react";
+import { ChevronLeft, EllipsisVertical, Trash2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 interface ChatHeaderProps {
   conversation: Conversation & {
@@ -45,6 +45,12 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
   return (
     <div className="w-full px-3  py-[10px] border-b shadow-sm flex items-center justify-between">
       <div className="flex items-center gap-x-2">
+        <div
+          className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative"
+          onClick={() => router.push("/conversations")}
+        >
+          <ChevronLeft size={20} className="" />
+        </div>
         <Image
           src={profileImage}
           alt="User image"

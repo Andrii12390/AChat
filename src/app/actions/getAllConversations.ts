@@ -1,7 +1,7 @@
 import { prisma } from "../../../prisma/prisma-client";
-import getUser from "./getUser";
+import { getUser } from "./";
 
-const getAllConversations = async () => {
+export const getAllConversations = async () => {
   const user = await getUser();
 
   if (!user) {
@@ -11,28 +11,23 @@ const getAllConversations = async () => {
   try {
     const conversations = await prisma.conversation.findMany({
       orderBy: {
-        lastMessageAt: 'desc',
+        lastMessageAt: "desc",
       },
       where: {
         participants: {
           some: {
-            userId: user.id, 
+            userId: user.id,
           },
         },
       },
       include: {
-        participants: true, 
+        participants: true,
         messages: {
           orderBy: {
-            createdAt: 'desc',
+            createdAt: "desc",
           },
           include: {
             sender: true,
-            seenByUsers: {
-              include: {
-                user: true, 
-              },
-            },
           },
         },
       },
@@ -44,5 +39,3 @@ const getAllConversations = async () => {
   }
 };
 
-
-export default getAllConversations

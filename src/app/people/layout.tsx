@@ -1,24 +1,21 @@
-import getUsers from "../actions/getUsers"
-import { MobileSidebar, Sidebar, UsersList } from "../components/"
-
+import { getUsers } from "../actions";
+import { MobileSidebar, Sidebar, UsersList } from "../components/";
 
 export default async function ChatLayout({
-  children
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const users = await getUsers()
+  const users = await getUsers();
   return (
-      <div>
-        <Sidebar>
-          <UsersList users={users}/>
-        </Sidebar>
-        <MobileSidebar>
-          <UsersList users={users}/>
-        </MobileSidebar>
-        <main>
-          {children}
-        </main>
-      </div>
-  )
+    <div>
+      <Sidebar>
+        <UsersList users={users} />
+      </Sidebar>
+      <MobileSidebar>
+        <UsersList users={users} />
+      </MobileSidebar>
+      <main>{children}</main>
+    </div>
+  );
 }

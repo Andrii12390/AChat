@@ -1,5 +1,5 @@
 export type CustomConversation = {
-  id: string
+  id: number
   messages: {
     text: string,
     sender: {
@@ -9,15 +9,6 @@ export type CustomConversation = {
       createdAt: Date;
       updatedAt: Date;
     };
-    seenByUsers: {
-      user: {
-        id: number;
-        username: string;
-        password: string;
-        createdAt: Date;
-        updatedAt: Date;
-      };
-    }[];
   }[];
   participants: {
     userId: number;  

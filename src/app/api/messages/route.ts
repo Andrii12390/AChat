@@ -1,38 +1,33 @@
-import { NextResponse } from "next/server"
-import getUser from "../../actions/getUser"
+import { NextResponse } from "next/server";
 import { prisma } from "../../../../prisma/prisma-client";
+import { getUser } from "../../actions";
 import { pusherServer } from "../../libs/pusher";
-
 
 export async function POST(request: Request) {
   try {
     const currentUser = await getUser();
     const body = await request.json();
-    const {
-      message,
-      conversationId
-    } = body
+    const { message, conversationId } = body;
 
     if (!currentUser?.username || !message || !conversationId) {
-      return new NextResponse("Missed params", {status: 400})
+      return new NextResponse("Missed params", { status: 400 });
     }
 
     const newMessage = await prisma.message.create({
       data: {
-        text: message,         // текст повідомлення
+        text: message,
         sender: {
-          connect: { id: currentUser.id }, // Встановлюємо зв'язок з відправником
+          connect: { id: currentUser.id },
         },
         conversation: {
-          connect: { id: conversationId }, // Встановлюємо зв'язок з розмовою
+          connect: { id: conversationId },
         },
       },
       include: {
-        sender: true, // Повертаємо також дані відправника
-        conversation: true, 
+        sender: true,
+        conversation: true,
       },
     });
-
 
     const updatedConversation = await prisma.conversation.update({
       where: {
@@ -42,30 +37,29 @@ export async function POST(request: Request) {
         lastMessageAt: new Date(),
         messages: {
           connect: {
-            id: newMessage.id
-          }
-        }
+            id: newMessage.id,
+          },
+        },
       },
       include: {
         participants: true,
-        messages: true
-      }
+        messages: true,
+      },
     });
 
-    await pusherServer.trigger(conversationId.toString(), 'messages:new', newMessage)
+    await pusherServer.trigger(
+      conversationId.toString(),
+      "messages:new",
+      newMessage
+    );
 
-    const lastMessage = updatedConversation.messages[updatedConversation.messages.length - 1]
-
-    updatedConversation.participants.map((participant) => {
-      pusherServer.trigger(participant.username!, 'conversation:update', {
-        id: conversationId,
-        messages: [lastMessage]
-      })
-    })
-
+    // updatedConversation.participants.map((participant) => {
+    //   pusherServer.trigger(participant.username!, 'conversation:update', {
+    //     updatedConversation
+    //   });
+    // });
     return NextResponse.json(newMessage);
   } catch (error: any) {
-    console.log(error, "MESSAGE CREATION ERROR")
-    return new NextResponse("Server error [MESSAGES]", {status: 500})
+    return new NextResponse("[Message:create] error", { status: 500 });
   }
 }

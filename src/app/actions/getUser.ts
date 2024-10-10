@@ -1,17 +1,19 @@
+import { getServerSession } from "next-auth";
 import { prisma } from "../../../prisma/prisma-client";
-import getUserSession from "./getUserSession";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-export default async function getUser () {
+export const getUser = async () => {
   try {
-    const userSession = await getUserSession();
+    const session = await getServerSession(authOptions);
     const user = await prisma.user.findFirst({
       where: {
-        username: userSession?.user?.name || ""
-      }
-    })
+        username: session?.user?.name || "",
+      },
+    });
 
-    return user
+    return user;
   } catch (error: any) {
-    return null
+    return null;
   }
-}
+};
+

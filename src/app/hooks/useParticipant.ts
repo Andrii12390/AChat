@@ -2,10 +2,9 @@ import { useSession } from "next-auth/react";
 import { useMemo } from "react";
 import { CustomConversation } from "../types";
 import { User } from "@prisma/client"
-import { any } from "zod";
 
 
-const useParticipant = (conversation: CustomConversation | any, currentUser: User) => {
+const useParticipant = (conversation: CustomConversation, currentUser: User) => {
   const session = useSession();
   if (!conversation?.participants) {
     return null

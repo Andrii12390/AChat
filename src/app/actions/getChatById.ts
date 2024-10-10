@@ -1,26 +1,26 @@
 import { prisma } from "../../../prisma/prisma-client";
-import getUser from "./getUser";
+import { getUser } from "./";
 
-const getChatById = async (conversetionId: number) => {
+export const getChatById = async (conversetionId: number) => {
   try {
     const user = await getUser();
-    if(!user?.username) {
+
+    if (!user?.username) {
       return null;
     }
 
     const conversetion = await prisma.conversation.findFirst({
       where: {
-        id: conversetionId
+        id: conversetionId,
       },
       include: {
-        participants: true
-      }
-    })
+        participants: true,
+      },
+    });
 
-    return conversetion
+    return conversetion;
   } catch (error: any) {
-    return null
+    return null;
   }
-}
+};
 
-export default getChatById

@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "../../../../../prisma/prisma-client";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,25 +20,28 @@ export const authOptions: NextAuthOptions = {
           username: credentials.username,
         };
 
-        const findUser = await prisma.user.findFirst({
+        const user = await prisma.user.findFirst({
           where: values,
         });
 
-        if (!findUser) {
+        if (!user) {
           return null;
         }
-        const isMatch = await bcrypt.compare(credentials.password, findUser.password);
+        const isMatch = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
         if (!isMatch) {
           return null;
         }
 
-        return findUser;
+        return user;
       },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -52,11 +55,11 @@ export const authOptions: NextAuthOptions = {
     session({ session, token }) {
       if (session?.user) {
         session.user.id = token.id;
-        session.user.name = token.username; 
+        session.user.name = token.username;
       }
-      
+
       return session;
-    }
+    },
   },
 };
 

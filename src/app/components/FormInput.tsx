@@ -8,7 +8,12 @@ interface FormInputProps {
   Icon: React.ElementType;
 }
 
-export const FormInput: React.FC<FormInputProps> = ({type, placeholder, Icon, name}) => {
+export const FormInput: React.FC<FormInputProps> = ({
+  type,
+  placeholder,
+  Icon,
+  name,
+}) => {
   const { register } = useFormContext();
   return (
     <div className="flex items-center relative">
