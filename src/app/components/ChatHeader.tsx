@@ -43,10 +43,10 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
     }
   };
   return (
-    <div className="w-full px-3  py-[10px] border-b shadow-sm flex items-center justify-between">
+    <div className="w-full px-3  py-[10px] border-b dark:border-white/15 shadow-sm flex items-center justify-between">
       <div className="flex items-center gap-x-2">
         <div
-          className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative"
+          className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative dark:hover:bg-indigo-500"
           onClick={() => router.push("/conversations")}
         >
           <ChevronLeft size={20} className="" />
@@ -61,30 +61,34 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
           <div className="text-xs text-blue-500">online</div>
         </div>
       </div>
-      <div
-        className={`px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative ${
-          open && "bg-slate-100"
-        }`}
-        onClick={handleToggle}
-      >
-        <EllipsisVertical size={20} />
-        {open && (
-          <div
-            className="absolute bg-slate-100 p-2 rounded-md right-3 top-7"
-            onClick={handleClose}
-          >
-            <ul className="flex gap-y-2">
-              <li
-                className="flex items-center gap-2 hover:bg-slate-200 p-2 rounded-md transition text-red-600 cursor-pointer"
-                onClick={handleClick}
-              >
-                <Trash2 size={20} />
-                <div className="text-xs whitespace-nowrap">Delete Chat</div>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
+      <div className="relative">
+  <div
+    className={`px-1 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-indigo-500 transition-colors duration-300 ${
+      open ? "bg-slate-100 dark:bg-neutral-900/80" : ""
+    }`}
+    onClick={handleToggle}
+  >
+    <EllipsisVertical size={20} />
+  </div>
+  {open && (
+    <div
+      className="absolute bg-slate-100 dark:bg-neutral-800 p-2 rounded-md right-0 top-full mt-2 z-50"
+    >
+      <ul className="flex flex-col gap-y-2">
+        <li
+          className="flex items-center gap-2 hover:bg-slate-200 dark:hover:bg-neutral-900/90 p-2 rounded-md transition text-red-600 font-semibold cursor-pointer"
+          onClick={() => {
+            handleClick();
+            handleClose(); 
+          }}
+        >
+          <Trash2 size={20} />
+          <div className="text-xs whitespace-nowrap">Delete Chat</div>
+        </li>
+      </ul>
+    </div>
+  )}
+</div>
     </div>
   );
 }

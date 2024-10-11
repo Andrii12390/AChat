@@ -31,7 +31,7 @@ async function Chat({ params }: { params: { id: string } }) {
         <ConversationList list={conversations} currentUser={currentUser!} />
       </Sidebar>
 
-      <div className="h-full  lg:ml-72 md:ml-72 flex flex-col">
+      <div className="h-full  lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
         <ChatHeader conversation={conversation} user={user} />
         <MessageList messages={messages} />
         <MessageComposer />

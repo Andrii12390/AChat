@@ -17,7 +17,7 @@ export function MessageInput({
 }: MessageInputProps) {
   return (
     <input
-      className="w-full rounded-full py-2 px-3 focus:outline-none bg-slate-100"
+      className="border-none w-full rounded-full py-2 px-3 focus:outline-none bg-slate-100 dark:bg-indigo-500/10 dark:border"
       id={id}
       {...register(id, { required })}
       autoComplete={id}

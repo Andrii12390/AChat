@@ -1,15 +1,15 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { SidebarItem } from ".";
+import { SidebarItem, ThemeSwitcher } from "./";
 import { signOut } from "next-auth/react";
 import useRoutes from "../hooks/useRoutes";
 
 export function MobileSidebar({ children }: { children: React.ReactElement }) {
   const routes = useRoutes();
   return (
-    <div className="lg:hidden md:hidden w-full flex flex-col gap-y-2 pb-12">
-      <ul className="flex justify-between items-center border-b py-3 px-4 shadow-sm overflow-y-auto no-scrollbar">
+    <div className="lg:hidden md:hidden w-full h-full flex flex-col gap-y-2 pb-12">
+      <ul className="flex justify-between items-center border-b dark:border-white/15 py-3 px-4 shadow-sm overflow-y-auto no-scrollbar">
         {routes.map((item) => (
           <SidebarItem
             key={item.href}
@@ -26,6 +26,9 @@ export function MobileSidebar({ children }: { children: React.ReactElement }) {
         onClick={() => signOut()}
       >
         <LogOut size={20} />
+      </div>
+      <div className="absolute bottom-2 left-10">
+        <ThemeSwitcher />
       </div>
     </div>
   );

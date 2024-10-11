@@ -19,8 +19,8 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
       <Link
         href={href}
         className={`flex flex-col items-center justify-center ${
-          isActive && "text-blue-500"
-        } hover:text-blue-500 transition duration-300`}
+          isActive && "text-blue-500 dark:text-indigo-500"
+        } hover:text-blue-500 hover:dark:text-indigo-500 transition duration-300`}
       >
         <Icon size={20} />
         <div>{label}</div>

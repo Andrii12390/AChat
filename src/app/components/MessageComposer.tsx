@@ -28,7 +28,7 @@ export function MessageComposer() {
   };
 
   return (
-    <div className="border-t bg-white py-2 px-2 flex items-center">
+    <div className="border-t dark:border-white/15 bg-white dark:bg-neutral-950/85 py-2 px-2 flex items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex items center gap-2"
@@ -41,7 +41,7 @@ export function MessageComposer() {
         />
         <button
           type="submit"
-          className="text-slate-400 hover:text-blue-500 transition-colors duration-300 mr-1"
+          className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors duration-300 mr-1"
         >
           <Send />
         </button>
