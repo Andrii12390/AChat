@@ -41,16 +41,15 @@ export function ConversationItem({ data, currentUser }: ConversationItemProps) {
     return lastMessage.text;
   }, []);
 
+
   return (
     <div
       onClick={onClick}
       className="py-2 px-3 flex items-center gap-x-2 cursor-pointer"
     >
-      <Image
-        alt="user image"
-        className="w-10 h-10 rounded-full"
-        src={profileImage}
-      />
+        <div className={`rounded-full w-10 h-10 font-semibold text-black relative flex items-center justify-center ${data.avatarColor}`}>
+          {otherParticipant?.username[0]}
+        </div>
       <div className="flex flex-col justify-between">
         <div className="text-sm max-w-52 overflow-hidden">
           {otherParticipant?.username}

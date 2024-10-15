@@ -15,6 +15,7 @@ interface ChatHeaderProps {
       userId: number;
       username: string;
       conversationId: number;
+      avatarColor:String;
     }[];
   };
   user: User | null;
@@ -22,7 +23,7 @@ interface ChatHeaderProps {
 
 export function ChatHeader({ conversation, user }: ChatHeaderProps) {
   const router = useRouter();
-  const otherUser = useParticipant(conversation, user!);
+  const otherUser = conversation.participants.find(currentUser => currentUser.userId != user?.id)
 
   const [open, setOpen] = useState(false);
 
@@ -43,7 +44,7 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
     }
   };
   return (
-    <div className="w-full px-3  py-[10px] border-b dark:border-white/15 shadow-sm flex items-center justify-between">
+    <div className="w-full px-3  py-[10px] border-b dark:border-white/15 shadow-sm flex items-center justify-between dark:shadow-indigo-500">
       <div className="flex items-center gap-x-2">
         <div
           className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative dark:hover:bg-indigo-500"
@@ -51,14 +52,12 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
         >
           <ChevronLeft size={20} className="" />
         </div>
-        <Image
-          src={profileImage}
-          alt="User image"
-          className="w-10 h-10 rounded-full"
-        />
+        <div className={`rounded-full w-10 h-10 font-semibold text-black relative flex items-center justify-center ${otherUser?.avatarColor}`}>
+          {otherUser?.username[0]}
+        </div>
         <div className="flex flex-col">
-          <div className="text-sm">{otherUser.username}</div>
-          <div className="text-xs text-blue-500">online</div>
+          <div className="text-sm">{otherUser?.username}</div>
+          <div className="text-xs text-blue-500 dark:text-indigo-500">online</div>
         </div>
       </div>
       <div className="relative">

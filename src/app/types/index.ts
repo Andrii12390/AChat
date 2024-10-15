@@ -12,8 +12,9 @@ export type CustomConversation = {
   }[];
   participants: {
     userId: number;  
-    username: string; 
+    username: string;
   }[];
+  avatarColor: string;
 }
 
 export type extendedMessage = {

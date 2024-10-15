@@ -33,7 +33,26 @@ export const getAllConversations = async () => {
       },
     });
 
-    return conversations;
+    const conversations_ = await Promise.all(
+      conversations.map(async (conversation) => {
+        const otherUserId = conversation.participants[0].userId === user.id
+          ? conversation.participants[1].userId
+          : conversation.participants[0].userId;
+          
+        const otherUser = await prisma.user.findFirst({
+          where: {
+            id: otherUserId,
+          },
+        });
+    
+        return {
+          ...conversation,
+          avatarColor: otherUser?.avatarColor 
+        };
+      })
+    );
+
+    return conversations_;
   } catch (error: any) {
     return [];
   }

@@ -4,8 +4,6 @@ import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { Pencil } from "lucide-react";
-import profileImage from "../images/profile-img.jpg";
-import Image from "next/image";
 import axios from "axios";
 
 interface UserItemProps {
@@ -28,11 +26,9 @@ export const UserItem: React.FC<UserItemProps> = ({ data }) => {
     <div className="w-full px-3">
       <div className="border-b border-white/15 py-2">
       <div className="flex gap-x-3">
-        <Image
-          alt="user image"
-          className="w-10 h-10 rounded-full"
-          src={profileImage}
-        />
+        <div className={`rounded-full  h-10 w-12 font-semibold text-black relative flex items-center justify-center ${data.avatarColor}`}>
+          {data.username[0]}
+        </div>
         <div className="w-full flex items-center justify-between">
           <div>{data.username}</div>
           <div

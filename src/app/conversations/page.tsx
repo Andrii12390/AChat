@@ -11,6 +11,7 @@ import {
 
 export default async function page() {
   const conversations = await getAllConversations();
+  console.log(conversations)
   const currentUser = await getUser();
   return (
     <div className="h-full ">

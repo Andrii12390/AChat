@@ -9,7 +9,7 @@ export function Sidebar({ children }: { children: React.ReactElement }) {
   const routes = useRoutes();
   return (
     <div className="dark:bg-neutral-950/90 sm:hidden lg:block md:block fixed w-72 overflow-y-auto inset-y-0 border-r border-black/10 dark:border-white/15 pb-15">
-      <ul className="flex justify-between items-center border-b dark:border-white/15  py-2 px-4 shadow-sm">
+      <ul className="flex justify-between items-center border-b dark:border-white/15  py-2 px-4 shadow-sm dark:shadow-indigo-500">
         {routes.map((item) => (
           <SidebarItem
             key={item.href}
