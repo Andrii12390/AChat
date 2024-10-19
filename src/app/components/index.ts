@@ -16,5 +16,7 @@ export { MessageInput } from "./MessageInput";
 export { MessageItem } from "./MessageItem";
 export { MobileSidebar } from "./MobileSidebar"; 
 export { ThemeSwitcher } from "./ThemeSwitcher";
+export { SettingsHeader } from "./SettingsHeader";
+export { SettingsFooter } from "./SettingsFooter";
 
 

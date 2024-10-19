@@ -45,7 +45,7 @@ export function ConversationItem({ data, currentUser }: ConversationItemProps) {
   return (
     <div
       onClick={onClick}
-      className="py-2 px-3 flex items-center gap-x-2 cursor-pointer"
+      className="py-2 border-neutral-100 flex items-center border-b dark:border-white/15 gap-x-2 cursor-pointer"
     >
         <div className={`rounded-full w-10 h-10 font-semibold text-black relative flex items-center justify-center ${data.avatarColor}`}>
           {otherParticipant?.username[0]}

@@ -6,7 +6,7 @@ export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="p-1 hover:bg-slate-50 h-fit dark:hover:bg-indigo-500 rounded-md transition-all duration-300">
+    <div className="p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-all duration-300">
       <button
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         className="flex items-center justify-center"

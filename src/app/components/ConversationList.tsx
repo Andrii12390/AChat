@@ -47,7 +47,7 @@ export function ConversationList({ list, currentUser }: ConversationListProps) {
   }, [pusherKey]);
 
   return (
-    <div className="flex flex-col gap-2 overflow-y-auto">
+    <div className="flex flex-col gap-2 px-3 overflow-y-auto">
       {listItems.map((item) => (
         <ConversationItem
           key={item.id}
