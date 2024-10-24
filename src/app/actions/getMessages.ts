@@ -13,7 +13,7 @@ export const getMessages = async (conversationId: number) => {
         createdAt: "asc",
       },
     });
-    
+
     return messages;
   } catch (error: any) {
     return [];

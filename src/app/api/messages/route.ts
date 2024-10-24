@@ -7,15 +7,16 @@ export async function POST(request: Request) {
   try {
     const currentUser = await getUser();
     const body = await request.json();
-    const { message, conversationId } = body;
+    const { message, conversationId, image } = body;
 
-    if (!currentUser?.username || !message || !conversationId) {
+    if (!currentUser?.username || !conversationId) {
       return new NextResponse("Missed params", { status: 400 });
     }
 
     const newMessage = await prisma.message.create({
       data: {
         text: message,
+        image: image,
         sender: {
           connect: { id: currentUser.id },
         },

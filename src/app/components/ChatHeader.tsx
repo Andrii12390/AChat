@@ -43,7 +43,7 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
     }
   };
   return (
-    <div className="w-full px-3  py-[10px] border-b dark:border-white/15 shadow-sm flex items-center justify-between dark:shadow-indigo-500">
+    <div className="w-full px-3  py-[10px] border-b dark:border-white/15 shadow-sm flex items-center justify-between dark:shadow-indigo-500 z-50">
       <div className="flex items-center gap-x-2">
         <div
           className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative dark:hover:bg-indigo-500"

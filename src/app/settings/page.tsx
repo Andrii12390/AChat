@@ -1,8 +1,8 @@
 'use client'
+
 import React from "react";
 import {  } from "../actions";
 import { SettingsFooter, SettingsHeader, ThemeSwitcher } from "../components";
-import { Trash2 } from "lucide-react";
 
 export default function page() {
   return (
@@ -14,12 +14,7 @@ export default function page() {
         </div>
         <ThemeSwitcher />
         <SettingsFooter/>
-
-        
       </div>
     </div>
   );
 }
-
-  // //      <button className="bg-red-600 px-2 py-1 rounded-md text-center flex items-center">
-  // </button>

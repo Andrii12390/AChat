@@ -6,8 +6,7 @@ import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { CustomConversation } from "../types";
 import useParticipant from "../hooks/useParticipant";
-import Image from "next/image";
-import profileImage from "../images/profile-img.jpg";
+
 
 interface ConversationItemProps {
   data: CustomConversation;
@@ -34,6 +33,9 @@ export function ConversationItem({ data, currentUser }: ConversationItemProps) {
   }, [session.data?.user?.name]);
 
   const lastMessageText = useMemo(() => {
+    if (lastMessage.image) {
+      return "Sent an image"
+    }
     if (!lastMessage?.text) {
       return "No messages yet";
     }

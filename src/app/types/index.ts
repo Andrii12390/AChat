@@ -2,6 +2,7 @@ export type CustomConversation = {
   id: number
   messages: {
     text: string,
+    image: string,
     sender: {
       id: number;
       username: string;
