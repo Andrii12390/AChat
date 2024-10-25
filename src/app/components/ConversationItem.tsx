@@ -6,6 +6,7 @@ import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { CustomConversation } from "../types";
 import useParticipant from "../hooks/useParticipant";
+import { Avatar } from "./";
 
 
 interface ConversationItemProps {
@@ -33,7 +34,7 @@ export function ConversationItem({ data, currentUser }: ConversationItemProps) {
   }, [session.data?.user?.name]);
 
   const lastMessageText = useMemo(() => {
-    if (lastMessage.image) {
+    if (lastMessage?.image) {
       return "Sent an image"
     }
     if (!lastMessage?.text) {
@@ -49,9 +50,7 @@ export function ConversationItem({ data, currentUser }: ConversationItemProps) {
       onClick={onClick}
       className="py-2 border-neutral-100 flex items-center border-b dark:border-white/15 gap-x-2 cursor-pointer"
     >
-        <div className={`rounded-full w-10 h-10 font-semibold text-black relative flex items-center justify-center ${data.avatarColor}`}>
-          {otherParticipant?.username[0]}
-        </div>
+      <Avatar color={data.avatarColor} avatar={data.avatar} username={otherParticipant?.username}/>
       <div className="flex flex-col justify-between">
         <div className="text-sm max-w-52 overflow-hidden">
           {otherParticipant?.username}

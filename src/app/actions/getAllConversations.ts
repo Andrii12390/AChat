@@ -47,7 +47,8 @@ export const getAllConversations = async () => {
     
         return {
           ...conversation,
-          avatarColor: otherUser?.avatarColor 
+          avatarColor: otherUser?.avatarColor,
+          avatar: otherUser?.avatar
         };
       })
     );

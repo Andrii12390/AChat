@@ -16,6 +16,7 @@ export type CustomConversation = {
     username: string;
   }[];
   avatarColor: string;
+  avatar: string;
 }
 
 export type extendedMessage = {

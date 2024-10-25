@@ -18,5 +18,7 @@ export { MobileSidebar } from "./MobileSidebar";
 export { ThemeSwitcher } from "./ThemeSwitcher";
 export { SettingsHeader } from "./SettingsHeader";
 export { SettingsFooter } from "./SettingsFooter";
-
+export { AvatarUploader } from "./AvatarUploader";
+export { Avatar } from "./Avatar";
+export { SettingsMenu } from "./SettingsMenu";
 

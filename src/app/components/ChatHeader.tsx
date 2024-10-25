@@ -5,6 +5,7 @@ import { ChevronLeft, EllipsisVertical, Trash2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Avatar } from ".";
 
 interface ChatHeaderProps {
   conversation: Conversation & {
@@ -12,7 +13,8 @@ interface ChatHeaderProps {
       userId: number;
       username: string;
       conversationId: number;
-      avatarColor: String;
+      avatarColor: string;
+      avatar: string | undefined;
     }[];
   };
   user: User | null;
@@ -49,13 +51,10 @@ export function ChatHeader({ conversation, user }: ChatHeaderProps) {
           className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors duration-300 relative dark:hover:bg-indigo-500"
           onClick={() => router.push("/conversations")}
         >
-          <ChevronLeft size={20} className="" />
+          <ChevronLeft size={20}  />
         </div>
-        <div
-          className={`rounded-full w-10 h-10 font-semibold text-black relative flex items-center justify-center ${otherUser?.avatarColor}`}
-        >
-          {otherUser?.username[0]}
-        </div>
+        <Avatar color={otherUser?.avatarColor} avatar={otherUser?.avatar} username={otherUser?.username}/>
+
         <div className="flex flex-col">
           <div className="text-sm">{otherUser?.username}</div>
           <div className="text-xs text-blue-500 dark:text-indigo-500">

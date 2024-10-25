@@ -12,8 +12,8 @@ model User {
   id                Int      @id @default(autoincrement())
   username          String
   password          String
-  avatarColor String
-
+  avatarColor       String
+  avatar            String?
   conversations     ConversationOnUser[] 
   seenMessages      UserOnSeenMessages[] 
   messages          Message[]            

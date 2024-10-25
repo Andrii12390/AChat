@@ -8,7 +8,6 @@ export const getChatById = async (conversationId: number) => {
     if (!user?.username) {
       return null;
     }
-
     const conversation = await prisma.conversation.findFirst({
       where: {
         id: conversationId,
@@ -16,25 +15,24 @@ export const getChatById = async (conversationId: number) => {
       include: {
         participants: {
           include: {
-            user: { // Включаємо інформацію про користувача
+            user: {
               select: {
-                avatarColor: true, // Вибираємо лише 
+                avatarColor: true,
+                avatar: true,
               }
             }
           }
         },
       },
     });
-    // Перетворюємо учасників, щоб прибрати user та додати avatarColor
     const participantsWithAvatarColor = conversation?.participants.map(participant => ({
       userId: participant.userId,
       conversationId: participant.conversationId,
-      avatarColor: participant.user.avatarColor, // Додаємо avatarColor
-      username: participant.username // Додаємо username
-      // Додайте інші поля, які вам потрібні
+      avatarColor: participant.user.avatarColor,
+      username: participant.username,
+      avatar: participant.user.avatar
     }));
 
-    // Повертаємо розмову з новою структурою учасників
     return {
       ...conversation,
       participants: participantsWithAvatarColor,

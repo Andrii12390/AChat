@@ -11,7 +11,7 @@ export const SettingsHeader = () => {
     router.back()
   }
   return (
-    <div className="font-semibold tracking-wide text-xl relative px-48 sm:px-20">
+    <div className="font-semibold tracking-wide text-xl relative lg:px-48 md:px-40 sm:px-20">
       Settings
       <div className="absolute left-0 top-0 p-1 dark:hover:bg-indigo-500 rounded-md transition duration-300 hover:bg-slate-100"
       onClick={() => onClick()}

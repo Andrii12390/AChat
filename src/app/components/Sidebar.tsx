@@ -3,7 +3,6 @@ import useRoutes from "../hooks/useRoutes";
 import { SidebarItem } from "./";
 import { signOut } from "next-auth/react";
 import { LogOut } from "lucide-react";
-import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function Sidebar({ children }: { children: React.ReactElement }) {
   const routes = useRoutes();
@@ -30,7 +29,6 @@ export function Sidebar({ children }: { children: React.ReactElement }) {
       <div
         className="absolute bottom-2 left-10"
       >
-        <ThemeSwitcher/>
       </div>
     </div>
   );
