@@ -27,7 +27,7 @@ async function Chat({ params }: { params: { id: string } }) {
   }
   return (
     <div className="h-full ">
-      <Sidebar>
+      <Sidebar user={user!}>
         <ConversationList list={conversations} currentUser={currentUser!} />
       </Sidebar>
 

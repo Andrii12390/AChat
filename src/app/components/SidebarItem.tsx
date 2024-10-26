@@ -3,27 +3,24 @@
 import Link from "next/link";
 
 interface SidebarItemProps {
-  label: string;
   isActive: boolean;
   href: string;
   icon: any;
 }
 export const SidebarItem: React.FC<SidebarItemProps> = ({
-  label,
   href,
   isActive,
   icon: Icon,
 }) => {
   return (
-    <li>
+    <li className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition duration-300 rounded-md">
       <Link
         href={href}
-        className={`flex flex-col items-center justify-center ${
+        className={`${
           isActive && "text-blue-500 dark:text-indigo-500"
-        } hover:text-blue-500 hover:dark:text-indigo-500 transition duration-300`}
+        } transition duration-300`}
       >
-        <Icon size={20} />
-        <div>{label}</div>
+          <Icon size={25} />
       </Link>
     </li>
   );

@@ -24,7 +24,7 @@ export const UserItem: React.FC<UserItemProps> = ({ data }) => {
       });
   }, [data, router]);
   return (
-    <div className="w-full px-3">
+    <div className="w-full">
       <div className="border-b border-neutral-100 dark:border-white/15 py-2">
         <div className="flex gap-x-3">
           <Avatar

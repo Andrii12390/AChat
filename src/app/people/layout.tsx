@@ -1,4 +1,4 @@
-import { getUsers } from "../actions";
+import { getUser, getUsers } from "../actions";
 import { MobileSidebar, Sidebar, UsersList } from "../components/";
 
 export default async function ChatLayout({
@@ -7,12 +7,13 @@ export default async function ChatLayout({
   children: React.ReactNode;
 }) {
   const users = await getUsers();
+  const user = await getUser();
   return (
     <div>
-      <Sidebar>
+      <Sidebar user={user!}>
         <UsersList users={users} />
       </Sidebar>
-      <MobileSidebar>
+      <MobileSidebar user={user!}>
         <UsersList users={users} />
       </MobileSidebar>
       <main>{children}</main>

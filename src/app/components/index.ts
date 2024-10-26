@@ -21,4 +21,7 @@ export { SettingsFooter } from "./SettingsFooter";
 export { AvatarUploader } from "./AvatarUploader";
 export { Avatar } from "./Avatar";
 export { SettingsMenu } from "./SettingsMenu";
+export { Modal } from "./Modal";
+export { Settings } from "./Settings";
+export { SearchInput } from "./SearchInput";
 

@@ -20,13 +20,7 @@ const useRoutes = () => {
       href: '/people',
       icon: UsersRound,
       isActive: path === '/people'
-    },
-    {
-      label: 'Settings',
-      href: '/settings',
-      icon: Settings,
-      isActive: path === '/settings'
-    },
+    }
   ], [path, conversationId]);
   return routes;
 }

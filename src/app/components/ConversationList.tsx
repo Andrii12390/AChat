@@ -1,9 +1,9 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CustomConversation } from "../types";
-import { ConversationItem } from "./";
+import { ConversationItem, SearchInput } from "./";
 import { useSession } from "next-auth/react";
 import { User } from "@prisma/client";
 import { pusherClient } from "../libs/pusher";
@@ -16,10 +16,20 @@ interface ConversationListProps {
 }
 
 export function ConversationList({ list, currentUser }: ConversationListProps) {
-  const [listItems, setList] = useState(list);
-  const router = useRouter();
-  const { conversationId } = useConversation();
-  const session = useSession();
+  const [listItems, setList] = useState(list);  
+  const [searchText, setSearchText] = useState('');
+
+  const searchedUserList = useMemo(() => {
+    return listItems.filter(item => {
+
+      const participants = item.participants.filter(participant => participant.userId !== currentUser.id);
+      return participants.some(participant => 
+        participant.username.toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
+  }, [searchText, listItems, currentUser]);
+  
+
 
   const pusherKey = currentUser.username
   useEffect(() => {
@@ -47,8 +57,9 @@ export function ConversationList({ list, currentUser }: ConversationListProps) {
   }, [pusherKey]);
 
   return (
-    <div className="flex flex-col gap-2 px-3 overflow-y-auto">
-      {listItems.map((item) => (
+    <div className="flex flex-col gap-2 px-3 pt-3 overflow-y-auto">
+       <SearchInput searchText={searchText} onSearchChange={setSearchText} />
+      {searchedUserList.map((item) => (
         <ConversationItem
           key={item.id}
           data={item}

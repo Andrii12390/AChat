@@ -1,35 +1,34 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { SidebarItem, ThemeSwitcher } from "./";
+import { SidebarItem, Settings } from "./";
 import { signOut } from "next-auth/react";
 import useRoutes from "../hooks/useRoutes";
+import { User } from "@prisma/client";
 
-export function MobileSidebar({ children }: { children: React.ReactElement }) {
+export function MobileSidebar({ children, user }: { children: React.ReactElement, user: User }) {
   const routes = useRoutes();
   return (
-    <div className="lg:hidden md:hidden w-full h-full flex flex-col gap-y-2 pb-12">
-      <ul className="flex justify-between items-center border-b dark:border-white/15 py-3 px-4 shadow-sm overflow-y-auto no-scrollbar">
+    <div className="lg:hidden md:hidden h-dvh flex flex-col gap-y-2">
+      <div className="flex-1">{children}</div>
+      <ul className="flex justify-between items-center border-t dark:border-white/15 py-3 px-4 shadow-sm overflow-y-auto no-scrollbar">
         {routes.map((item) => (
           <SidebarItem
             key={item.href}
-            label={item.label}
             href={item.href}
             isActive={item.isActive}
             icon={item.icon}
           />
         ))}
+
+        <Settings avatar={user?.avatar}/>
+        <div
+          className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition duration-300 rounded-md"
+          onClick={() => signOut()}
+        >
+          <LogOut size={25} />
+        </div>
       </ul>
-      {children}
-      <div
-        className="absolute bottom-2 left-2 p-1 hover:bg-slate-100 rounded-md"
-        onClick={() => signOut()}
-      >
-        <LogOut size={20} />
-      </div>
-      <div className="absolute bottom-2 left-10">
-        <ThemeSwitcher />
-      </div>
     </div>
   );
 }

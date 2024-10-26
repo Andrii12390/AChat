@@ -11,15 +11,14 @@ import {
 
 export default async function page() {
   const conversations = await getAllConversations();
-  console.log(conversations)
-  const currentUser = await getUser();
+  const user = await getUser();
   return (
     <div className="h-full ">
-      <Sidebar>
-        <ConversationList list={conversations} currentUser={currentUser!} />
+      <Sidebar user={user!}>
+        <ConversationList list={conversations} currentUser={user!} />
       </Sidebar>
-      <MobileSidebar>
-        <ConversationList list={conversations} currentUser={currentUser!} />
+      <MobileSidebar user={user!}>
+        <ConversationList list={conversations} currentUser={user!} />
       </MobileSidebar>
       <div className="pl-72 h-full sm:hidden lg:block md:block">
         <ChatPrompt text="Click on someone to open chat" />
