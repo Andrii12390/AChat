@@ -4,22 +4,24 @@ import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formLoginSchema, TFormLoginValues } from "./schemas";
-import { useRouter } from "next/navigation";
+import { useRouter, Link } from "@/i18n/routing";
 import { signIn, useSession } from "next-auth/react";
-import { FormInput, FormButton } from "../";
+import { FormInput, FormButton } from "@/components";
 import { UserRound, Lock } from "lucide-react";
+import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
-import Link from "next/link";
 
-export const LoginForm: React.FC = () => {
-  const session = useSession();
+export const LoginForm = () => {
+  const t = useTranslations("LoginPage");
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (session?.status === "authenticated") {
+    if (status === "authenticated") {
       router.push("/people");
     }
-  }, [session?.status, router]);
+  }, [status, router]);
+
   const form = useForm<TFormLoginValues>({
     resolver: zodResolver(formLoginSchema),
     defaultValues: {
@@ -30,16 +32,16 @@ export const LoginForm: React.FC = () => {
 
   const onSubmit = async (data: TFormLoginValues) => {
     try {
-      console.log(data);
       const resp = await signIn("credentials", {
         ...data,
         redirect: false,
       });
+
       if (resp?.ok) {
-        toast.success("You are succusfully logged in!");
+        toast.success(t("toast.successLogin"));
         router.push("/people");
-      } else if (resp?.error) {
-        toast.error("Invalid credentials!");
+      } else {
+        toast.error(t("toast.invalidCredentials"));
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -53,25 +55,25 @@ export const LoginForm: React.FC = () => {
         className="mt-60 p-2 h-fit flex flex-col gap-y-4"
       >
         <h1 className="text-center text-2xl text-gray-800 font-semibold">
-          Login
+          {t("form.title")}
         </h1>
         <FormInput
           name="username"
           type="text"
-          placeholder="Username"
+          placeholder={t("form.placeholder.username")}
           Icon={UserRound}
         />
         <FormInput
           name="password"
           type="password"
-          placeholder="Password"
+          placeholder={t("form.placeholder.password")}
           Icon={Lock}
         />
         <Link href="/registration" className="text-xs text-gray-600 ml-1">
-          Don't have account?
+          {t("signUpLink.text")}
         </Link>
         <div className="flex justify-center">
-          <FormButton text="Login" />
+          <FormButton text={t("form.button")} />
         </div>
       </form>
     </FormProvider>

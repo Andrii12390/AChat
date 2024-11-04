@@ -1,4 +1,4 @@
-import { prisma } from "../../../prisma/prisma-client";
+import { prisma } from "@/prisma-client";
 
 export const getMessages = async (conversationId: number) => {
   try {

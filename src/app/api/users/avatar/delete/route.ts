@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../../../prisma/prisma-client";
-import { getUser } from "../../../../actions";
+import { prisma } from "@/prisma-client";
+import { getUser } from "@/actions";
 
 export async function POST() {
   try {
@@ -10,7 +10,6 @@ export async function POST() {
       return new NextResponse("[Avatar:delete] Unauthorized user", {status: 400})
     }
   
-    
     await prisma.user.update({
       where: {
         id: user?.id

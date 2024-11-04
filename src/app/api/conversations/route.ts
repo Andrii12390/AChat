@@ -1,11 +1,12 @@
-import { prisma } from "../../../../prisma/prisma-client";
-import { getUser } from "../../actions";
+import { getUser } from "@/actions";
 import { NextResponse } from "next/server";
-import { pusherServer } from "../../libs/pusher";
+import { pusherServer } from "@/libs/pusher";
+import { prisma } from "@/prisma-client";
 
 export async function POST(request: Request) {
   const body = await request.json();
   const { action } = body;
+  
   try {
     if (action === "create") {
       const currentUser = await getUser();

@@ -1,0 +1,76 @@
+{
+  "LoginPage": {
+    "title": "Вхід",
+    "form": {
+      "title": "Логін",
+      "button": "Увійти",
+      "placeholder": {
+        "username": "Ім'я користувача",
+        "password": "Пароль"
+      }
+    },
+    "signUpLink": {
+      "text": "Немає акаунту?"
+    },
+    "toast": {
+      "successLogin": "Ви успішно увійшли!",
+      "invalidCredentials": "Невірний логін або пароль!"
+    }
+  },
+  "RegistrationPage": {
+    "title": "Реєстрація",
+    "form": {
+      "title": "Реєстрація",
+      "button": "Зареєструватися",
+      "placeholder": {
+        "username": "Ім'я користувача",
+        "password": "Пароль",
+        "confirmPassword": "Підтвердити пароль"
+      }
+    },
+    "signInLink": {
+      "text": "Вже маєте акаунт?"
+    },
+    "toast": {
+      "successRegistration": "Ви успішно зареєструвалися!",
+      "failedLogin": "Не вдалося увійти після реєстрації!"
+    }
+  },
+  "PeoplePage": {
+    "title": "Люди",
+    "prompt": "Натисніть на когось, щоб почати чат",
+    "placeholder": {
+      "search": "Пошук"
+    }
+  },
+  "ConversationsPage": {
+    "title": "Розмови",
+    "prompt": "Натисніть на когось, щоб відкрити чат",
+    "messagePlaceholder": "Напишіть повідомлення",
+    "online": "в мережі",
+    "deleteChat": "Видалити чат",
+    "sentImage": "Надіслав(-ла) зображення",
+    "noMessages": "Поки немає повідомлень"
+  },
+  "Settings": {
+    "title": "Налаштування",
+    "theme": {
+      "title": "Кольорова тема",
+      "switch": "Перемкнути"
+    },
+    "avatar": {
+      "title": "Аватар",
+      "upload": "Завантажити",
+      "delete": "Видалити",
+      "update": "Оновити"
+    },
+    "account": {
+      "title": "Акаунт",
+      "delete": "Видалити"
+    },
+    "locale": {
+      "title": "Мова додатку",
+      "change": "Змінити на англійську"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../../../prisma/prisma-client";
-import { getUser } from "../../../../actions";
+import { prisma } from "@/prisma-client";
+import { getUser } from "@/actions";
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +13,6 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { avatar } = body
     
-    console.log("avatar ", avatar)
     await prisma.user.update({
       where: {
         id: user?.id

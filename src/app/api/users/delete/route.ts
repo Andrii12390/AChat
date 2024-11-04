@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../../prisma/prisma-client";
-import { getUser } from "../../../actions";
+import { prisma } from "@/prisma-client";
+import { getUser } from "@/actions";
+
 
 export async function POST() {
   try {
     const currentUser = await getUser();
-    console.log(currentUser)
+
     if (!currentUser) {
       return new NextResponse("[USERS: Delete] user not found", { status: 400 })
     }

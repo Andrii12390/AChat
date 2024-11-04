@@ -1,0 +1,76 @@
+{
+  "LoginPage": {
+    "title": "Sign in",
+    "form": {
+      "title": "Login",
+      "button": "Login",
+      "placeholder": {
+        "username": "Username",
+        "password": "Password"
+      }
+    },
+    "signUpLink": {
+      "text": "Don't have an account?"
+    },
+    "toast": {
+      "successLogin": "You are succusfully logged in!",
+      "invalidCredentials": "Invalid credentials!"
+    }
+  },
+  "RegistrationPage": {
+    "title": "Sign up",
+    "form": {
+      "title": "Registration",
+      "button": "Register",
+      "placeholder": {
+        "username": "Username",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      }
+    },
+    "signInLink": {
+      "text": "Already have an account?"
+    },
+    "toast": {
+      "successRegistration": "You are succusfully Registered!",
+      "failedLogin": "Login after registration failed!"
+    }
+  },
+  "PeoplePage": {
+    "title": "People",
+    "prompt": "Click on someone to start a chat",
+    "placeholder": {
+      "search": "Search"
+    }
+  },
+  "ConversationsPage": {
+    "title": "Conversations",
+    "prompt": "Click on someone to open a chat",
+    "messagePlaceholder": "Type a message",
+    "online": "online",
+    "deleteChat": "Delete chat",
+    "sentImage": "Sent an image",
+    "noMessages": "No messages yet"
+  },
+  "Settings": {
+    "title": "Settings",
+    "theme": {
+      "title": "Color Theme",
+      "switch": "Switch"
+    },
+    "avatar": {
+      "title": "Avatar",
+      "upload": "Upload",
+      "delete": "Delete",
+      "update": "Update"
+    },
+    "account": {
+      "title": "Account",
+      "delete": "Delete"
+    },
+    "locale": {
+      "title": "App language",
+      "change": "Change to ukrainian"
+    }
+  }
+}

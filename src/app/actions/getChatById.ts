@@ -1,5 +1,5 @@
-import { prisma } from "../../../prisma/prisma-client";
-import { getUser } from "./";
+import { prisma } from "@/prisma-client";
+import { getUser } from "@/actions";
 
 export const getChatById = async (conversationId: number) => {
   try {
