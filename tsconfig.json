@@ -23,6 +23,7 @@
       "@/actions": ["./app/actions"],
       "@/libs/*": ["./app/libs/*"],
       "@/hooks/*": ["./app/hooks/*"],
+      "@/utils/*": ["./app/utils/*"],
     },
     "plugins": [
       {

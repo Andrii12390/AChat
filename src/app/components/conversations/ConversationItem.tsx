@@ -42,9 +42,10 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
     if (!lastMessage?.text) {
       return t("noMessages");
     }
-
+  
     return lastMessage.text;
-  }, []);
+  }, [lastMessage?.text, lastMessage?.image, t]);
+  
 
   return (
     <div
