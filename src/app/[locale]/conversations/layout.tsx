@@ -4,6 +4,7 @@ import {
 } from "@/actions";
 import {
   ConversationList,
+  MobileSidebar,
   Sidebar,
 } from "@/components";
 
@@ -14,6 +15,9 @@ const ChatLayout = async ({children}: {children: React.ReactNode }) => {
 
   return (
     <main className="h-full">
+      <MobileSidebar user={user!}>
+      <ConversationList list={conversations} currentUser={user!} />
+      </MobileSidebar>
       <Sidebar user={user!}>
         <ConversationList list={conversations} currentUser={user!} />
       </Sidebar>

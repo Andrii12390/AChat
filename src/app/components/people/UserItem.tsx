@@ -33,7 +33,7 @@ export const UserItem = ({ data }: UserItemProps) => {
             username={data.username}
           />
           <div className="flex flex-1 items-center justify-between">
-            <div>{data.username}</div>
+            <div className="max-w-32 overflow-hidden">{data.username}</div>
             <div
               onClick={onClick}
               className="text-xs p-1 rounded-md transition duration-300 hover:bg-neutral-100 dark:hover:bg-indigo-500"
