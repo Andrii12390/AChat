@@ -1,10 +1,10 @@
 "use client";
 
 import { Trash2 } from "lucide-react";
-import axios from "axios";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "use-intl";
 import { useState } from "react";
+import axios from "axios";
 
 interface ChatDeleteProps {
   conversationId: number;
