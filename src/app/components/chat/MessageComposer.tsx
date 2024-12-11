@@ -4,7 +4,7 @@ import axios from "axios";
 import useConversation from "@/hooks/useConversation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { MessageInput } from "@/components";
-import { Send, Image } from "lucide-react";
+import { Send, Image as Img} from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
 import { useTranslations } from "use-intl";
 export const MessageComposer = () => {
@@ -42,7 +42,7 @@ export const MessageComposer = () => {
       <CldUploadWidget uploadPreset="qaicbhvr" onSuccess={handleUploadSuccess}>
         {({ open }) => {
           return (
-            <Image onClick={() => open()}
+            <Img onClick={() => open()}
             className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors duration-300 mr-1"/>
           );
         }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TFormRegisterValues, formRegisterSchema } from "./schemas";
 import { UserRound, Lock } from "lucide-react";
@@ -17,7 +17,7 @@ export const RegistrationForm = () => {
 
   const t = useTranslations('RegistrationPage');
 
-  const form = useForm<TFormRegisterValues>({
+  const { register, handleSubmit, formState: { errors } } = useForm<TFormRegisterValues>({
     resolver: zodResolver(formRegisterSchema),
     defaultValues: {
       username: "",
@@ -25,8 +25,7 @@ export const RegistrationForm = () => {
       confirmPassword: "",
     },
   });
-
-  const onSubmit = async (data: TFormRegisterValues) => {
+  const onSubmit: SubmitHandler<TFormRegisterValues> = async (data: TFormRegisterValues) => {
     try {
       const body = {
         username: data.username,
@@ -52,9 +51,9 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <FormProvider {...form}>
+
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+       onSubmit={handleSubmit(onSubmit)}
         className="mt-60 p-2 h-fit flex flex-col gap-y-4"
       >
         <h1 className="text-center text-2xl text-gray-800 font-semibold">
@@ -65,18 +64,21 @@ export const RegistrationForm = () => {
           type="text"
           placeholder={t('form.placeholder.username')}
           Icon={UserRound}
+          register={register}
         />
         <FormInput
           name="password"
           type="password"
           placeholder={t('form.placeholder.password')}
           Icon={Lock}
+          register={register}
         />
         <FormInput
           name="confirmPassword"
           type="password"
           placeholder={t('form.placeholder.confirmPassword')}
           Icon={Lock}
+          register={register}
         />
         <Link href="/" className="text-xs text-gray-600 ml-1">
         {t('signInLink.text')}
@@ -85,6 +87,5 @@ export const RegistrationForm = () => {
           <FormButton text={t('form.button')} />
         </div>
       </form>
-    </FormProvider>
   );
 };

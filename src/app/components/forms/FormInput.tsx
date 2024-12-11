@@ -1,11 +1,12 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 
 interface FormInputProps {
   type: string;
   placeholder: string;
   name: string;
   Icon: React.ElementType;
+  register: UseFormRegister<any>; // Зазначте відповідний тип для вашої форми
 }
 
 export const FormInput = ({
@@ -13,8 +14,8 @@ export const FormInput = ({
   placeholder,
   Icon,
   name,
+  register
 }: FormInputProps) => {
-  const { register } = useFormContext();
   return (
     <div className="flex items-center relative">
       <Icon className="w-[18px] text-gray-900 absolute -left-6" />
