@@ -16,11 +16,10 @@ export const MobileSidebar = ({ children, user }: SidebarProps) => {
 
   return (
     <aside className="lg:hidden md:hidden flex flex-col h-screen">
-
       <main className="flex-1 overflow-y-auto no-scrollbar">
         {children}
       </main>
-      <footer className="dark:bg-neutral-950/90 py-3 sticky bottom-0 w-full">
+      <footer className="bg-white dark:bg-neutral-950/90 py-3 sticky bottom-0 w-full z-50">
         <ul className="flex justify-between items-center px-4">
           {routes.map((item) => (
             <SidebarItem
