@@ -10,9 +10,10 @@ import {
 } from "@/components";
 
 const Chat = async ({ params }: { params: { id: string } }) => {
-  const conversation = await getChatById(Number(params.id));
+  const chatId = parseInt(params.id);
+  const conversation = await getChatById(chatId);
 
-  const messages = await getMessages(Number(params.id));
+  const messages = await getMessages(chatId);
   
   const user = await getUser();
 
@@ -24,7 +25,7 @@ const Chat = async ({ params }: { params: { id: string } }) => {
     );
   }
   return (
-    <main className="h-full  lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
+    <main className="h-full lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
       <ChatHeader conversation={conversation} user={user} />
       <MessageList messages={messages} />
       <MessageComposer />

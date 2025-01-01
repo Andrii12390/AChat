@@ -15,7 +15,7 @@ export const MobileSidebar = ({ children, user }: SidebarProps) => {
   const routes = useRoutes();
 
   return (
-    <div className="lg:hidden md:hidden h-dvh flex flex-col gap-y-2">
+    <aside className="lg:hidden md:hidden h-dvh flex flex-col gap-y-2">
       <div className="flex-1">{children}</div>
       <ul className="flex justify-between items-center border-t dark:border-white/15 py-3 px-4 shadow-sm overflow-y-auto no-scrollbar">
         {routes.map((item) => (
@@ -29,12 +29,12 @@ export const MobileSidebar = ({ children, user }: SidebarProps) => {
 
         <Settings avatar={user?.avatar}/>
         <div
-          className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition duration-300 rounded-md"
+          className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-md"
           onClick={() => signOut()}
         >
           <LogOut size={25} />
         </div>
       </ul>
-    </div>
+    </aside>
   );
 }

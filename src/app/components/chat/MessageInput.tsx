@@ -2,7 +2,7 @@
 
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
-interface MessageInputProps {
+interface IMessageInput {
   required: boolean;
   id: string;
   placeholder: string;
@@ -14,14 +14,14 @@ export const MessageInput = ({
   id,
   placeholder,
   register,
-}: MessageInputProps) => {
+}: IMessageInput) => {
   return (
     <input
       className="border-none w-full rounded-full py-2 px-3 focus:outline-none bg-slate-100 dark:bg-neutral-900"
       id={id}
       {...register(id, { required })}
-      autoComplete={id}
       placeholder={placeholder}
+      autoComplete="off"
     />
   );
 };

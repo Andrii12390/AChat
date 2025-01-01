@@ -15,7 +15,7 @@ export const ThemeSwitcher = () => {
         {t("theme.title")}
       </div>
       <div
-        className="p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-all duration-300 flex justify-between items-center"
+        className="p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors flex justify-between items-center"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
         <button className="flex items-center justify-center">

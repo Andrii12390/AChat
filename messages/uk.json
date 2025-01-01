@@ -33,6 +33,7 @@
     },
     "toast": {
       "successRegistration": "Ви успішно зареєструвалися!",
+      "passwordsDontMatch": "Паролі не співпадають!",
       "failedLogin": "Не вдалося увійти після реєстрації!"
     }
   },

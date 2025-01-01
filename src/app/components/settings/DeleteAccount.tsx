@@ -30,7 +30,7 @@ export const DeleteAccount = () => {
         {t("account.title")}
       </div>
       <div
-        className="w-full p-1 hover:bg-slate-100 dark:hover:bg-red-600 rounded-md transition-colors duration-300 flex justify-between items-center"
+        className="w-full p-1 hover:bg-slate-100 dark:hover:bg-red-600 rounded-md transition-colors flex justify-between items-center"
         onClick={() => onClick()}
       >
         <Trash2 size={20} />

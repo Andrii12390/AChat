@@ -12,7 +12,7 @@ interface AvatarUploaderProps {
 
 export const AvatarUploader = ({ avatar }: AvatarUploaderProps) => {
   const t = useTranslations("Settings");
-  const [isUploaded, setIsUploaded] = useState(Boolean(avatar));
+  const [isUploaded, setIsUploaded] = useState(!!avatar);
 
   const handleUploadSuccess = (results: any) => {
     const uploadedUrl = results?.info?.secure_url;
@@ -27,7 +27,7 @@ export const AvatarUploader = ({ avatar }: AvatarUploaderProps) => {
     setIsUploaded(false);
   };
 
-  const buttonStyles = "p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors duration-300 cursor-pointer";
+  const buttonStyles = "p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors cursor-pointer";
   const labelStyles = "text-sm dark:text-gray-300 text-gray-500";
 
   return (

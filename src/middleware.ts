@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
+import { routing } from "@/i18n/routing";
 
 const localizationMiddleware = createMiddleware(routing);
 
 export default async function middleware(req: any) {
-  const res = await localizationMiddleware(req);
+  const res = localizationMiddleware(req);
 
   const token = await getToken({ req });
   const publicRoutes = ["/en", "/uk", "/en/registration", "/uk/registration"];

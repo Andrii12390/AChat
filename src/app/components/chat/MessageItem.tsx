@@ -5,11 +5,11 @@ import { useSession } from "next-auth/react";
 import { extendedMessage } from "@/types";
 import { CldImage } from "next-cloudinary";
 
-interface MessageItemProps {
+interface IMessageItem {
   data: extendedMessage;
 }
 
-export function MessageItem({ data }: MessageItemProps) {
+export function MessageItem({ data }: IMessageItem) {
   const session = useSession();
 
   const isCurrentUserMessage = session.data?.user?.name === data.sender.username;
@@ -28,7 +28,7 @@ export function MessageItem({ data }: MessageItemProps) {
           alt="Image"
           height={200}
           width={200}
-          className="rounded-md hover:scale-110"
+          className="rounded-md"
         />
       )}
       <div className="text-sm">{data.text}</div>

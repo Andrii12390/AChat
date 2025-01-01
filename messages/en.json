@@ -33,6 +33,7 @@
     },
     "toast": {
       "successRegistration": "You are succusfully Registered!",
+      "passwordsDontMatch": "Passwords don't match!",
       "failedLogin": "Login after registration failed!"
     }
   },

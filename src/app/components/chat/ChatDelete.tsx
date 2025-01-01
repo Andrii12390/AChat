@@ -6,12 +6,12 @@ import { useTranslations } from "use-intl";
 import { useState } from "react";
 import axios from "axios";
 
-interface ChatDeleteProps {
+interface IChatDelete {
   conversationId: number;
   onClose: () => void;
 }
 
-export const ChatDelete = ({ conversationId, onClose }: ChatDeleteProps) => {
+export const ChatDelete = ({ conversationId, onClose }: IChatDelete) => {
   const router = useRouter();
   const t = useTranslations("ConversationsPage");
   const [isDeleting, setIsDeleting] = useState(false);

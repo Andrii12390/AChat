@@ -52,8 +52,11 @@ export const ConversationList = ({ list, currentUser }: ConversationListProps) =
   }, [pusherKey]);
 
   return (
-    <div className="flex flex-col gap-2 px-3 pt-3 overflow-y-auto">
-       <SearchInput searchText={searchText} onSearchChange={setSearchText} />
+    <div className="overflow-y-auto px-3 no-scrollbar max-h-[calc(100vh-0.5rem)]">
+      <div className="sticky top-0 bg-white dark:bg-neutral-950/90 z-10 py-3">
+        <SearchInput searchText={searchText} onSearchChange={setSearchText} />
+      </div>
+      <div className="flex flex-col gap-2">
       {searchedUserList.map((item) => (
         <ConversationItem
           key={item.id}
@@ -61,6 +64,7 @@ export const ConversationList = ({ list, currentUser }: ConversationListProps) =
           currentUser={currentUser}
         />
       ))}
+      </div>
     </div>
   );
 }

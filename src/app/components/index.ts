@@ -1,7 +1,7 @@
 export { FormButton } from "./forms/FormButton";
 export { FormInput } from "./forms/FormInput";
-export { LoginForm } from "./forms/LoginForm";
-export { RegistrationForm } from "./forms/RegistrationForm";
+export { LoginForm } from "./forms/login/LoginForm";
+export { RegistrationForm } from "./forms/registration/RegistrationForm";
 export { ChatPrompt } from "./shared/ChatPrompt";
 export { ConversationItem } from "./conversations/ConversationItem";
 export { ConversationList } from "./conversations/ConversationList";

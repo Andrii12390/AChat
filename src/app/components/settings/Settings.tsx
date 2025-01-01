@@ -14,7 +14,7 @@ export const Settings = ({ avatar }: SettingsProps) => {
   return (
     <div>
       <li
-        className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition duration-300 rounded-md"
+        className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-md"
         onClick={() => setIsOpen(true)}
       >
         <SettingsIcon size={25} />

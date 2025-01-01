@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+    transitionDuration: {
+        DEFAULT: '300ms'
+     },
+      backgroundImage: {
+        'gradient': 'linear-gradient(to top right, #97c4fd, #d5b5fe)',
+      }
     },
     screens: {
       'sm': '300px',

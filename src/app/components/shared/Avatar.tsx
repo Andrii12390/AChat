@@ -24,7 +24,7 @@ export const Avatar = ({ color, avatar, username }: AvatarProps) => {
         <div
           className={`h-10 w-10 rounded-full text-black font-semibold flex items-center justify-center  ${color}`}
         >
-          {username && username[0]}
+          {username && username[0].toUpperCase()}
         </div>
       )}
     </div>

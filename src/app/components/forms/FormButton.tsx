@@ -4,7 +4,7 @@ interface FormButtonProps {
 
 export const FormButton = ({ text }: FormButtonProps) => {
   return (
-    <button className="px-8 py-1 bg-gradient-to-tr from-indigo-500 to-indigo-700 hover:opacity-90 transition-all rounded-md shadow-md font-semibold w-fit">
+    <button className="px-8 py-1 text-white bg-indigo-500 hover:bg-indigo-500/75 transition-colors rounded-md shadow-md font-semibold w-fit">
       {text}
     </button>
   );

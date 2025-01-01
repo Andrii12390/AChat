@@ -11,23 +11,23 @@ export const Modal = ({ isOpen, handleClose, children }: ModalProps) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-slate-100 dark:bg-black opacity-50 transition-colors blur-xl" />
+        <div className="fixed inset-0 bg-slate-100 dark:bg-black opacity-50 blur-xl" />
       )}
       <div
         onClick={handleClose}
-        className={`fixed inset-0 flex justify-center items-center transition-all ${
+        className={`fixed inset-0 flex justify-center items-center ${
           isOpen ? "visible" : "invisible"
         }`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`rounded-md min-w-28 shadow-md  transition-colors duration-300 ${
+          className={`rounded-md min-w-28 shadow-md ${
             isOpen ? "scale-100 opacity-100" : "scale-100 opacity-0"
           }`}
         >
           <button
             onClick={handleClose}
-            className={`absolute top-1 right-1 p-1 transition-colors duration-300 rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800`}
+            className={`absolute top-1 right-1 p-1 transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800`}
           >
             <X />
           </button>

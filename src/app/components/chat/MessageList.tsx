@@ -14,6 +14,7 @@ interface MessageListProps {
 export function MessageList({ messages }: MessageListProps) {
   const [currentMessages, setCurrentMessages] = useState(messages);
 
+
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const { conversationId } = useConversation();
@@ -42,7 +43,7 @@ export function MessageList({ messages }: MessageListProps) {
   }, [conversationId]);
 
   return (
-    <div className="flex-1 overflow-y-auto flex flex-col gap-3 pt-4 px-2">
+    <div className="flex-1 overflow-y-auto flex flex-col no-scrollbar gap-3 pt-4 px-2">
       {currentMessages.map((message) => (
         <MessageItem key={message.id} data={message} />
       ))}

@@ -24,25 +24,21 @@ export const UserItem = ({ data }: UserItemProps) => {
   }, [data, router]);
 
   return (
-    <div className="w-full">
-      <div className="border-b border-neutral-100 dark:border-white/15 py-2">
-        <div className="flex gap-x-3">
-          <Avatar
-            color={data.avatarColor}
-            avatar={data.avatar}
-            username={data.username}
-          />
-          <div className="flex flex-1 items-center justify-between">
-            <div className="max-w-32 overflow-hidden">{data.username}</div>
-            <div
-              onClick={onClick}
-              className="text-xs p-1 rounded-md transition duration-300 hover:bg-neutral-100 dark:hover:bg-indigo-500"
-            >
-              <Pencil className="w-5 h-5" />
-            </div>
+    <div className="w-full border-b border-neutral-100 dark:border-white/15 py-2 flex gap-x-3">
+        <Avatar
+          color={data.avatarColor}
+          avatar={data.avatar}
+          username={data.username}
+        />
+        <div className="flex flex-1 items-center justify-between">
+          <div className="max-w-28 overflow-hidden whitespace-nowrap overflow-ellipsis">{data.username}</div>
+          <div
+            onClick={onClick}
+            className="text-xs p-1 rounded-md transition-colors hover:bg-neutral-100 dark:hover:bg-indigo-500"
+          >
+            <Pencil className="w-5 h-5" />
           </div>
         </div>
-      </div>
     </div>
   );
 };

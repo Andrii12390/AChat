@@ -7,6 +7,7 @@ import { MessageInput } from "@/components";
 import { Send, Image as Img} from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
 import { useTranslations } from "use-intl";
+
 export const MessageComposer = () => {
   const t = useTranslations("ConversationsPage");
 
@@ -43,7 +44,7 @@ export const MessageComposer = () => {
         {({ open }) => {
           return (
             <Img onClick={() => open()}
-            className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors duration-300 mr-1"/>
+            className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors mr-1"/>
           );
         }}
       </CldUploadWidget>
@@ -55,7 +56,7 @@ export const MessageComposer = () => {
         />
         <button
           type="submit"
-          className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors duration-300 mr-1"
+          className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors mr-1"
         >
           <Send />
         </button>

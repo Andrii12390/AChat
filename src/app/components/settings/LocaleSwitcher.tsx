@@ -25,7 +25,7 @@ export const LocaleSwitcher = () => {
       <div className="w-full font-semibold border-b dark:border-white/25 border-neutral-200">
         {t("locale.title")}
       </div>
-      <div className="w-full p-1 flex justify-between items-center hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-all duration-300"
+      <div className="w-full p-1 flex justify-between items-center hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors"
       onClick={handleLocaleSwitch}>
         <Earth size={20}/>
         <button

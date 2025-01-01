@@ -36,3 +36,18 @@ export type extendedMessage = {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export type TValidationRules = {
+  required?: {
+    value: boolean;
+    message: string;
+  };
+  minLength?: {
+    value: number;
+    message: string
+  };
+  maxLength?: {
+    value: number;
+    message: string;
+  };
+}
