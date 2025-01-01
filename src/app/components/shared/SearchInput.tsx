@@ -11,7 +11,7 @@ export const SearchInput = ({ searchText, onSearchChange }: SearchInputProps) =>
   return (
     <input
       type="text"
-      className=" bg-slate-100 dark:bg-neutral-900 px-3 py-2 rounded-full outline-none"
+      className=" bg-slate-100 dark:bg-neutral-900 px-3 py-2 rounded-full outline-none w-full"
       placeholder={t("placeholder.search")}
       value={searchText}
       onChange={(e) => onSearchChange(e.target.value)}

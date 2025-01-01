@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { User } from "@prisma/client";
 import { UserItem, SearchInput } from "@/components";
@@ -18,16 +18,17 @@ export const UsersList = ({ users }: UsersListProps) => {
   }, [searchText, users]);
 
   return (
-    <div className="overflow-y-auto px-3 no-scrollbar max-h-[calc(100vh-0.5rem)]">
-      <div className="sticky top-0 bg-white dark:bg-neutral-950/90 z-10 py-3">
+    <div className="flex flex-col h-dvh">
+      <header className="bg-white dark:bg-neutral-950 z-10 py-3 px-3 sticky top-0">
         <SearchInput searchText={searchText} onSearchChange={setSearchText} />
-      </div>
-      <div className="flex flex-col gap-2">
-        {searchedUserList.map((user) => {
-          return <UserItem key={user.id} data={user} />;
-        })}
-      </div>
-     
+      </header>
+      <main className="flex-1 overflow-y-auto no-scrollbar px-3">
+        <div className="flex flex-col gap-2">
+          {searchedUserList.map((user) => (
+            <UserItem key={user.id} data={user} />
+          ))}
+        </div>
+      </main>
     </div>
   );
 };

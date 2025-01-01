@@ -15,9 +15,9 @@ export const Sidebar = ({ children, user }: SidebarProps) => {
   const routes = useRoutes();
 
   return (
-    <aside className="dark:bg-neutral-950/90 sm:hidden lg:block md:block fixed w-72 overflow-y-auto inset-y-0 border-r border-black/10 dark:border-white/15">
-      <div className="w-14 flex flex-col justify-between items-center fixed inset-y-0 border-r border-black/10 dark:border-white/15 py-1">
-        <ul className="flex flex-col gap-y-5 items-center p-2 ">
+    <aside className="dark:bg-neutral-950/90 sm:hidden lg:block md:block fixed w-72 overflow-y-auto no-scrollbar h-dvh border-r border-black/10 dark:border-white/15">
+      <div className="w-14 flex flex-col justify-between items-center fixed h-dvh border-r border-black/10 dark:border-white/15 py-1">
+        <ul className="flex flex-col gap-y-5 items-center p-2">
           {routes.map((item) => (
             <SidebarItem
               key={item.href}
