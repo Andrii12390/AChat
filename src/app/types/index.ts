@@ -51,3 +51,9 @@ export type TValidationRules = {
     message: string;
   };
 }
+
+export type TMetaData = {
+  title: string;
+  description: string;
+  keywords: string;
+}

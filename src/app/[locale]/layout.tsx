@@ -1,25 +1,28 @@
-import { SessionContext, ThemeContext, ToasterContext } from "../context";
 import React from "react";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import "./globals.css";
+import AppContext from "app/context/AppContext";
+import { TMetaData } from "@/types";
 
-const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const messages = await getMessages();
-  
+const metadata: TMetaData = {
+  title: "Achat",
+  description: "Realtime chat application",
+  keywords: "chat, realtime, achat",
+};
+
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SessionContext>
-      <html lang="en" suppressHydrationWarning>
-        <body className="h-dvh">
-          <NextIntlClientProvider messages={messages}>
-            <ThemeContext>
-              <ToasterContext />
-              {children}
-            </ThemeContext>
-          </NextIntlClientProvider>
-        </body>
-      </html>
-    </SessionContext>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="keywords" content={metadata.keywords} />
+        <meta name="description" content={metadata.description} />
+        <title>{metadata.title}</title>
+      </head>
+      <body className="h-dvh">
+        <AppContext>
+          {children}
+        </AppContext>
+      </body>
+    </html>
   );
 };
 
