@@ -1,9 +1,9 @@
 import React from "react";
 import "./globals.css";
 import AppContext from "app/context/AppContext";
-import { TMetaData } from "@/types";
+import { Metadata } from "next";
 
-const metadata: TMetaData = {
+const metadata: Metadata = {
   title: "Achat",
   description: "Realtime chat application",
   keywords: "chat, realtime, achat",
@@ -12,11 +12,6 @@ const metadata: TMetaData = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="description" content={metadata.description} />
-        <title>{metadata.title}</title>
-      </head>
       <body className="h-dvh">
         <AppContext>
           {children}
