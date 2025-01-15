@@ -3,7 +3,6 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "@/i18n/routing";
 import { User } from "@prisma/client";
-import { useSession } from "next-auth/react";
 import { CustomConversation } from "@/types";
 import useParticipant from "@/hooks/useParticipant";
 import { Avatar } from "@/components";
@@ -19,7 +18,6 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
 
   const t = useTranslations("ConversationsPage");
 
-  const session = useSession();
   const router = useRouter();
 
   const onClick = useCallback(() => {
@@ -28,12 +26,9 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
-    return messages[0];
+    return messages[messages.length - 1];
   }, [data.messages]);
 
-  const username = useMemo(() => {
-    return session.data?.user?.name;
-  }, [session.data?.user?.name]);
 
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
@@ -46,15 +41,14 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
     return lastMessage.text;
   }, [lastMessage?.text, lastMessage?.image, t]);
   
-
   return (
     <div
       onClick={onClick}
       className="py-2 border-neutral-100 flex items-center border-b dark:border-white/15 gap-x-2 cursor-pointer"
     >
       <Avatar
-        color={data.avatarColor}
-        avatar={data.avatar}
+        color={data?.avatarColor}
+        avatar={data?.avatar}
         username={otherParticipant?.username}
       />
       <div className="flex flex-col justify-between">

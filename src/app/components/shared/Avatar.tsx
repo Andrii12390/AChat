@@ -9,7 +9,6 @@ interface AvatarProps {
 }
 
 export const Avatar = ({ color, avatar, username }: AvatarProps) => {
-  console.log(avatar);
   return (
     <div className="relative">
       {avatar ? (

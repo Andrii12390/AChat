@@ -34,7 +34,7 @@ export const UserItem = ({ data }: UserItemProps) => {
           <div className="max-w-28 overflow-hidden whitespace-nowrap overflow-ellipsis">{data.username}</div>
           <div
             onClick={onClick}
-            className="text-xs p-1 rounded-md transition-colors hover:bg-neutral-100 dark:hover:bg-indigo-500"
+            className="text-xs p-1 rounded-md transition-colors hover:bg-neutral-100 dark:hover:bg-slate-800"
           >
             <Pencil className="w-5 h-5" />
           </div>

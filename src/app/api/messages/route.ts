@@ -54,11 +54,12 @@ export async function POST(request: Request) {
       newMessage
     );
 
-    // updatedConversation.participants.map((participant) => {
-    //   pusherServer.trigger(participant.username!, 'conversation:update', {
-    //     updatedConversation
-    //   });
-    // });
+    await pusherServer.trigger(
+      conversationId.toString(),
+      'conversation:update',
+      updatedConversation
+  );
+  
     return NextResponse.json(newMessage);
   } catch (error: any) {
     return new NextResponse("[Message:create] error", { status: 500 });

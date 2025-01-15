@@ -7,15 +7,11 @@ export async function POST(request: Request) {
   
   
   try {
-
       const currentUser = await getUser();
       
-      console.log("CURRENT USER: ",currentUser)
-    
       const body = await request.json();
       const { userId } = body;
 
-      console.log("ID: ", userId)
       if (!currentUser?.username) {
         return new NextResponse("[Conversation:create] unauthorized user", {
           status: 400,
@@ -37,7 +33,7 @@ export async function POST(request: Request) {
         return NextResponse.json(existingConversation.id, { status: 200 });
       }
       
-      const conversation = await prisma.conversation.create({
+      const newConversation = await prisma.conversation.create({
         data: {
           participants: {
             create: [
@@ -48,20 +44,38 @@ export async function POST(request: Request) {
         },
         include: {
           participants: true,
+          messages: true
         },
       });
 
-      conversation.participants.map((participant) => {
-        if (participant.username) {
-          pusherServer.trigger(
-            participant.username,
-            "conversation:new",
-            conversation
-          );
-        }
-      });
+      const otherParticipant = newConversation.participants.filter(cur => cur.userId !== user.id)
 
-      return NextResponse.json(conversation.id, { status: 200 });
+      const otherUser = await prisma.user.findUnique({
+        where: {
+          id: otherParticipant[0].userId
+        }
+      })
+
+      const extendedConversation = {
+        ...newConversation,
+        avatar: otherUser.avatar,
+        avatarColor: otherUser.avatarColor as string
+      }
+
+
+      await pusherServer.trigger(
+        newConversation.participants[0].username,
+        "conversation:new",
+        extendedConversation
+      );
+
+      await pusherServer.trigger(
+        newConversation.participants[1].username,
+        "conversation:new",
+        extendedConversation
+      );
+
+      return NextResponse.json(newConversation.id, { status: 200 });
   } catch (error: any) {
     return new NextResponse(error.message, { status: 500 });
   }

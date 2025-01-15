@@ -2,11 +2,14 @@ import {
   getUser,
   getChatById,
   getMessages,
+  getAllConversations,
 } from "@/actions";
 import {
   ChatHeader,
+  ConversationList,
   MessageComposer,
   MessageList,
+  Sidebar,
 } from "@/components";
 
 const Chat = async ({ params }: { params: { id: string } }) => {
@@ -14,8 +17,10 @@ const Chat = async ({ params }: { params: { id: string } }) => {
   const conversation = await getChatById(chatId);
 
   const messages = await getMessages(chatId);
-  
+
   const user = await getUser();
+
+  const conversations = await getAllConversations();
 
   if (!conversation.participants) {
     return (
@@ -25,12 +30,17 @@ const Chat = async ({ params }: { params: { id: string } }) => {
     );
   }
   return (
-    <main className="h-full lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
-      <ChatHeader conversation={conversation} user={user} />
-      <MessageList messages={messages} />
-      <MessageComposer />
+    <main className="h-full">
+      <Sidebar user={user!}>
+        <ConversationList list={conversations} currentUser={user!} />
+      </Sidebar>
+      <div className="h-full lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
+        <ChatHeader conversation={conversation} user={user} />
+        <MessageList messages={messages} />
+        <MessageComposer />
+      </div>
     </main>
   );
-}
+};
 
 export default Chat;

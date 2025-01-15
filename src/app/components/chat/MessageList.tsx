@@ -14,7 +14,6 @@ interface MessageListProps {
 export function MessageList({ messages }: MessageListProps) {
   const [currentMessages, setCurrentMessages] = useState(messages);
 
-
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const { conversationId } = useConversation();
