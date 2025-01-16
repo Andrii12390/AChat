@@ -1,7 +1,7 @@
 "use client";
 
 import useRoutes from "@/hooks/useRoutes";
-import { SidebarItem, Settings } from "@/components";
+import { SidebarItem, Settings, Loader } from "@/components";
 import { signOut } from "next-auth/react";
 import { LogOut } from "lucide-react";
 import { User } from "@prisma/client";
@@ -9,9 +9,10 @@ import { User } from "@prisma/client";
 interface SidebarProps {
   children: React.ReactElement;
   user: User;
+  isLoading?: boolean
 }
 
-export const Sidebar = ({ children, user }: SidebarProps) => {
+export const Sidebar = ({ children, user, isLoading }: SidebarProps) => {
   const routes = useRoutes();
 
   return (
@@ -35,7 +36,13 @@ export const Sidebar = ({ children, user }: SidebarProps) => {
           <LogOut size={25} />
         </div>
       </div>
-      <div className="ml-14">{children}</div>
+      <div className="ml-14">
+       {isLoading ? (
+          <Loader/>
+        ): 
+         children
+        }
+      </div>
     </aside>
   );
 };

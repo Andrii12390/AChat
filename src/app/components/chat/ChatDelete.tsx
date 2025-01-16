@@ -3,8 +3,8 @@
 import { Trash2 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "use-intl";
-import { useState } from "react";
-import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 interface IChatDelete {
   conversationId: number;
@@ -14,18 +14,34 @@ interface IChatDelete {
 export const ChatDelete = ({ conversationId, onClose }: IChatDelete) => {
   const router = useRouter();
   const t = useTranslations("ConversationsPage");
-  const [isDeleting, setIsDeleting] = useState(false);
+  const queryClient = useQueryClient();
+  
+  const { mutate } = useMutation({
+    mutationKey: ["delete conversation"],
+    mutationFn: () =>
+      fetch("/api/conversations/delete", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ conversationId: conversationId }),
+      }).then((res) => res.json()),
+     
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["conversations"] });
+    },
+    onError: () => {
+      queryClient.invalidateQueries({ queryKey: ["conversations"] });
+    }
+  });
 
   const handleDelete = async () => {
-    setIsDeleting(true);
     try {
-      await axios.post("/api/conversations/delete", { conversationId });
-      router.push("/conversations");
-    } catch (error) {
-      console.log("An error occurred while deleting conversation");
-    } finally {
-      setIsDeleting(false);
+      mutate();
+      router.push('/conversations')
       onClose();
+    } catch (error: any) {
+      console.error(error);
     }
   };
 
@@ -35,9 +51,7 @@ export const ChatDelete = ({ conversationId, onClose }: IChatDelete) => {
       onClick={handleDelete}
     >
       <Trash2 size={20} />
-      <div className="text-xs whitespace-nowrap">
-        {t("deleteChat")}
-      </div>
+      <div className="text-xs whitespace-nowrap">{t("deleteChat")}</div>
     </li>
   );
 };

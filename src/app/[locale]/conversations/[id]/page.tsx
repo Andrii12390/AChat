@@ -9,6 +9,7 @@ import {
   ConversationList,
   MessageComposer,
   MessageList,
+  MobileSidebar,
   Sidebar,
 } from "@/components";
 
@@ -34,6 +35,9 @@ const Chat = async ({ params }: { params: { id: string } }) => {
       <Sidebar user={user!}>
         <ConversationList list={conversations} currentUser={user!} />
       </Sidebar>
+      <MobileSidebar user={user!}>
+        <ConversationList list={conversations} currentUser={user!} />
+      </MobileSidebar>
       <div className="h-full lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
         <ChatHeader conversation={conversation} user={user} />
         <MessageList messages={messages} />

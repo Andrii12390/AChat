@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { SidebarItem, Settings } from "@/components";
+import { SidebarItem, Settings, Loader } from "@/components";
 import { signOut } from "next-auth/react";
 import useRoutes from "@/hooks/useRoutes";
 import { User } from "@prisma/client";
@@ -9,15 +9,20 @@ import { User } from "@prisma/client";
 interface SidebarProps {
   children: React.ReactElement;
   user: User;
+  isLoading?: boolean
 }
 
-export const MobileSidebar = ({ children, user }: SidebarProps) => {
+export const MobileSidebar = ({ children, user, isLoading }: SidebarProps) => {
   const routes = useRoutes();
 
   return (
     <aside className="lg:hidden md:hidden flex flex-col h-screen">
       <main className="flex-1 overflow-y-auto no-scrollbar">
-        {children}
+        {isLoading ? (
+          <Loader />
+        ): 
+         children
+        }
       </main>
       <footer className="bg-white dark:bg-neutral-950/90 py-3 sticky bottom-0 w-full z-50">
         <ul className="flex justify-between items-center px-4">
