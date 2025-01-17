@@ -27,12 +27,11 @@ export const AvatarUploader = ({ avatar }: AvatarUploaderProps) => {
     setIsUploaded(false);
   };
 
-  const buttonStyles = "p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors cursor-pointer";
-  const labelStyles = "text-sm dark:text-gray-300 text-gray-500";
+  const buttonStyles = "p-1 h-fit hover:bg-hover rounded-md transition-colors";
 
   return (
-    <div className="flex flex-col gap-y-2">
-      <div className="font-semibold border-b dark:border-white/25 border-neutral-200">
+    <div className="flex flex-col gap-y-2 cursor-pointer">
+      <div className="font-semibold border-b border-border">
         {t("avatar.title")}
       </div>
 
@@ -41,7 +40,7 @@ export const AvatarUploader = ({ avatar }: AvatarUploaderProps) => {
           <div className={buttonStyles} onClick={() => open()}>
             <div className="flex justify-between items-center">
               {isUploaded ? <Upload size={20} /> : <SquarePen size={20} />}
-              <div className={labelStyles}>
+              <div className="text-sm">
                 {isUploaded ? t("avatar.update") : t("avatar.upload")}
               </div>
             </div>
@@ -53,7 +52,7 @@ export const AvatarUploader = ({ avatar }: AvatarUploaderProps) => {
         <div className={buttonStyles} onClick={handleDelete}>
           <div className="flex justify-between items-center">
             <X size={20} />
-            <div className={labelStyles}>{t("avatar.delete")}</div>
+            <div>{t("avatar.delete")}</div>
           </div>
         </div>
       )}

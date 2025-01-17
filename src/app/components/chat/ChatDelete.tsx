@@ -47,7 +47,7 @@ export const ChatDelete = ({ conversationId, onClose }: IChatDelete) => {
 
   return (
     <li
-      className="flex items-center gap-2 hover:bg-slate-200 dark:hover:bg-neutral-900/90 p-2 rounded-md transition text-red-600 font-semibold cursor-pointer"
+      className="flex items-center gap-2 hover:bg-hover p-2 rounded-md transition text-destructive-foreground font-semibold cursor-pointer"
       onClick={handleDelete}
     >
       <Trash2 size={20} />

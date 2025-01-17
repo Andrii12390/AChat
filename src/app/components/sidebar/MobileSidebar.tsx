@@ -24,7 +24,7 @@ export const MobileSidebar = ({ children, user, isLoading }: SidebarProps) => {
          children
         }
       </main>
-      <footer className="bg-white dark:bg-neutral-950/90 py-3 sticky bottom-0 w-full z-50">
+      <footer className="bg-background py-3 sticky bottom-0 w-full z-50">
         <ul className="flex justify-between items-center px-4">
           {routes.map((item) => (
             <SidebarItem
@@ -37,7 +37,7 @@ export const MobileSidebar = ({ children, user, isLoading }: SidebarProps) => {
 
           <Settings avatar={user?.avatar} />
           <div
-            className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-md"
+            className="p-1 hover:bg-hover transition-colors rounded-md"
             onClick={() => signOut()}
           >
             <LogOut size={25} />

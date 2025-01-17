@@ -44,7 +44,7 @@ export const UserItem = ({ data }: UserItemProps) => {
   };
 
   return (
-    <div className="w-full border-b border-neutral-100 dark:border-white/15 py-2 flex gap-x-3">
+    <div className="w-full border-b border-border py-2 flex gap-x-3">
       <Avatar
         color={data.avatarColor}
         avatar={data.avatar}
@@ -56,7 +56,7 @@ export const UserItem = ({ data }: UserItemProps) => {
         </div>
         <div
           onClick={onClick}
-          className="text-xs p-1 rounded-md transition-colors hover:bg-neutral-100 dark:hover:bg-slate-800"
+          className="text-xs p-1 rounded-md hover:bg-hover transition-colors cursor-pointer"
         >
           <Pencil className="w-5 h-5" />
         </div>

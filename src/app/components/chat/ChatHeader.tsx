@@ -34,10 +34,10 @@ export const ChatHeader = ({ conversation, user }: ChatHeaderProps) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <header className="w-full px-3 py-[10px] border-b dark:border-white/15 shadow-sm flex items-center justify-between z-50">
+    <header className="w-full px-3 py-[10px] border-b border-border shadow-sm flex items-center justify-between">
       <aside className="flex items-center gap-x-2">
         <div
-          className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-slate-100 transition-colors relative dark:hover:bg-indigo-500"
+          className="lg:hidden md:hidden sm:block px-1 py-1 rounded-md hover:bg-hover transition-colors relative"
           onClick={() => router.push("/conversations")}
         >
           <ChevronLeft size={20} />
@@ -49,23 +49,21 @@ export const ChatHeader = ({ conversation, user }: ChatHeaderProps) => {
         />
         <div>
           <span className="text-sm">{otherUser?.username}</span>
-          <div className="text-xs text-blue-500 dark:text-indigo-500">
+          <div className="text-xs text-primary-foreground">
             {t("online")}
           </div>
         </div>
       </aside>
       <aside className="relative">
         <div
-          className={`px-1 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-indigo-500 transition-colors ${
-            open ? "bg-slate-100 dark:bg-neutral-900/80" : ""
-          }`}
+          className="px-1 py-1 rounded-md hover:bg-hover transition-colors cursor-pointer"
           onClick={handleToggle}
         >
           <EllipsisVertical size={20} />
         </div>
         {open && (
-          <div className="absolute bg-slate-100 dark:bg-neutral-800 p-2 rounded-md right-0 top-full mt-2 z-50">
-            <ul className="flex flex-col gap-y-2">
+          <div className="absolute bg-popover p-2 rounded-md border border-border right-0 mt-2 shadow-md">
+            <ul className="flex flex-col gap-y-2 ">
               <ChatDelete
                 conversationId={conversation.id}
                 onClose={handleClose}

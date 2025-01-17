@@ -14,7 +14,7 @@ interface MenuProps {
 
 export const SettingsMenu = ({ avatar }: MenuProps) => {
   return (
-    <div className="bg-white dark:bg-neutral-950/70 flex flex-col h-fit p-4 rounded-md shadow-md">
+    <div className="flex flex-col p-4 rounded-md shadow-md">
       <SettingsHeader />
       <ThemeSwitcher />
       <AvatarUploader avatar={avatar} />

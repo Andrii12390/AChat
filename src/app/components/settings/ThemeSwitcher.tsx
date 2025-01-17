@@ -10,12 +10,12 @@ export const ThemeSwitcher = () => {
   const t = useTranslations("Settings");
 
   return (
-    <div className="flex flex-col gap-y-2 mt-2">
-      <div className="font-semibold border-b dark:border-white/25 border-neutral-100">
+    <div className="flex flex-col gap-y-2 mt-2 cursor-pointer">
+      <div className="font-semibold border-b border-border">
         {t("theme.title")}
       </div>
       <div
-        className="p-1 hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors flex justify-between items-center"
+        className="p-1 hover:bg-hover h-fit rounded-md transition-colors flex justify-between items-center"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
         <button className="flex items-center justify-center">
@@ -24,7 +24,7 @@ export const ThemeSwitcher = () => {
             className={`${theme === "light" ? "text-black" : "text-white"}`}
           />
         </button>
-        <div className="text-sm dark:text-gray-300 text-gray-500">
+        <div className="text-sm ">
           {t("theme.switch")}
         </div>
       </div>

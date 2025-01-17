@@ -21,15 +21,15 @@ export const LocaleSwitcher = () => {
   };
   
   return (
-    <div className="flex flex-col items-center gap-y-2">
-      <div className="w-full font-semibold border-b dark:border-white/25 border-neutral-200">
+    <div className="flex flex-col items-center gap-y-2 cursor-pointer">
+      <div className="w-full font-semibold border-b border-border">
         {t("locale.title")}
       </div>
-      <div className="w-full p-1 flex justify-between items-center hover:bg-slate-100 h-fit dark:hover:bg-indigo-500 rounded-md transition-colors"
+      <div className="w-full p-1 flex justify-between items-center hover:bg-hover h-fit  rounded-md transition-colors"
       onClick={handleLocaleSwitch}>
         <Earth size={20}/>
         <button
-          className="text-sm dark:text-gray-300 text-gray-500"
+          className="text-sm"
         >
         {t("locale.change")}
         </button>

@@ -11,7 +11,7 @@ export const Modal = ({ isOpen, handleClose, children }: ModalProps) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-slate-100 dark:bg-black opacity-50 blur-xl" />
+        <div className="fixed inset-0 bg-muted blur-xl" />
       )}
       <div
         onClick={handleClose}
@@ -27,11 +27,11 @@ export const Modal = ({ isOpen, handleClose, children }: ModalProps) => {
         >
           <button
             onClick={handleClose}
-            className={`absolute top-1 right-1 p-1 transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-neutral-800`}
+            className={`absolute top-1 right-1 p-1 transition-colors rounded-md hover:bg-hover`}
           >
             <X />
           </button>
-          <div className="pt-3 rounded-md bg-white dark:bg-neutral-900/70">
+          <div className="pt-3 rounded-md bg-modal border border-border">
             {children}
           </div>
         </div>

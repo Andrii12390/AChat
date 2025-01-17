@@ -29,7 +29,7 @@ export const ChatPrompt = () => {
   };
 
   return (
-    <div className="h-full text-blue-500 dark:text-indigo-600 flex justify-center pt-72 font-semibold text-2xl bg-gray-50 dark:bg-neutral-950/85">
+    <div className="h-full text-primary-foreground flex justify-center pt-72 font-semibold text-2xl bg-secondary">
       <Typewriter options={typewriterOptions} />
     </div>
   );

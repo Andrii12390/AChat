@@ -101,7 +101,7 @@ export const ConversationList = ({
 
   return (
     <div className="overflow-y-auto px-3 no-scrollbar flex-1">
-      <div className="sticky top-0 bg-white dark:bg-neutral-950/90 z-10 py-3">
+      <div className="sticky top-0 z-10 py-3">
         <SearchInput searchText={searchText} onSearchChange={setSearchText} />
       </div>
       <div className="flex flex-col gap-2 flex-1">

@@ -35,7 +35,7 @@ export const MessageComposer = () => {
   };
 
   return (
-    <div className="border-t dark:border-white/15 bg-white dark:bg-neutral-950/85 py-2 px-2 flex items-center">
+    <div className="border-t border-border py-2 px-2 flex items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex items-center gap-2"
@@ -43,8 +43,8 @@ export const MessageComposer = () => {
       <CldUploadWidget uploadPreset="qaicbhvr" onSuccess={handleUploadSuccess}>
         {({ open }) => {
           return (
-            <Img onClick={() => open()}
-            className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors mr-1"/>
+            <Img size={25} strokeWidth={1.5} onClick={() => open()}
+            className="hover:text-primary-foreground cursor-pointer transition-colors mr-1"/>
           );
         }}
       </CldUploadWidget>
@@ -56,9 +56,9 @@ export const MessageComposer = () => {
         />
         <button
           type="submit"
-          className="text-slate-400 hover:text-blue-500 dark:hover:text-indigo-500 transition-colors mr-1"
+          className="hover:text-primary-foreground transition-colors mr-1 cursor-pointer"
         >
-          <Send />
+          <Send size={22} strokeWidth={1.5}/>
         </button>
       </form>
     </div>

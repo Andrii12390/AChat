@@ -18,8 +18,8 @@ export function MessageItem({ data }: IMessageItem) {
     <div
       className={`flex flex-col max-w-[60%] h-max rounded-xl words-break ${
         isCurrentUserMessage
-          ? "ml-auto m-2 bg-slate-100 rounded-br-none dark:bg-neutral-800"
-          : "mr-auto ml-2 rounded-bl-none bg-blue-200 dark:bg-indigo-500"
+          ? "ml-auto m-2 bg-secondary rounded-br-none"
+          : "mr-auto ml-2 rounded-bl-none bg-primary"
       } px-2 py-1`}
     >
       {data.image && (

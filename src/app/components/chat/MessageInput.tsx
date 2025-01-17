@@ -17,7 +17,7 @@ export const MessageInput = ({
 }: IMessageInput) => {
   return (
     <input
-      className="border-none w-full rounded-full py-2 px-3 focus:outline-none bg-slate-100 dark:bg-neutral-900"
+      className="border-none w-full rounded-full py-2 px-3 focus:outline-none bg-input"
       id={id}
       {...register(id, { required })}
       placeholder={placeholder}

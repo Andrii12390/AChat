@@ -38,7 +38,7 @@ const Chat = async ({ params }: { params: { id: string } }) => {
       <MobileSidebar user={user!}>
         <ConversationList list={conversations} currentUser={user!} />
       </MobileSidebar>
-      <div className="h-full lg:ml-72 md:ml-72 flex flex-col dark:bg-neutral-950/85">
+      <div className="h-full lg:ml-72 md:ml-72 flex flex-col bg-background">
         <ChatHeader conversation={conversation} user={user} />
         <MessageList messages={messages} />
         <MessageComposer />

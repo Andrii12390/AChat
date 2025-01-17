@@ -12,9 +12,9 @@ export const Settings = ({ avatar }: SettingsProps) => {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div>
+    <div className="cursor-pointer">
       <li
-        className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-md"
+        className="p-1 hover:bg-hover transition-colors rounded-md"
         onClick={() => setIsOpen(true)}
       >
         <SettingsIcon size={25} />
