@@ -18,7 +18,7 @@ export function MessageItem({ data }: IMessageItem) {
     <div
       className={`flex flex-col max-w-[60%] h-max rounded-xl words-break ${
         isCurrentUserMessage
-          ? "ml-auto m-2 bg-message-secondary rounded-br-none"
+          ? "ml-auto mr-2 bg-message-secondary rounded-br-none"
           : "mr-auto ml-2 rounded-bl-none bg-message-primary"
       } px-2 py-1`}
     >

@@ -26,17 +26,14 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
-    return messages[messages.length - 1];
+    return messages[0];
   }, [data.messages]);
 
 
   const lastMessageText = useMemo(() => {
-    if (lastMessage?.image) {
-      return t("sentImage");
-    }
-    if (!lastMessage?.text) {
-      return t("noMessages");
-    }
+    if (lastMessage?.image) return t("sentImage");
+    
+    if (!lastMessage?.text) return t("noMessages");
   
     return lastMessage.text;
   }, [lastMessage?.text, lastMessage?.image, t]);
@@ -52,12 +49,12 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
         username={otherParticipant?.username}
       />
       <div className="flex flex-col justify-between">
-        <div className="text-sm max-w-52 overflow-hidden">
+        <span className="text-sm max-w-52 overflow-hidden">
           {otherParticipant?.username}
-        </div>
-        <div className="text-xs text-foreground-secondary max-w-52 overflow-hidden">
+        </span>
+        <span className="text-xs text-foreground-secondary max-w-52 overflow-hidden">
           {lastMessageText}
-        </div>
+        </span>
       </div>
     </div>
   );

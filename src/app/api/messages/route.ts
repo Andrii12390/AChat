@@ -44,8 +44,12 @@ export async function POST(request: Request) {
       },
       include: {
         participants: true,
-        messages: true,
-      },
+        messages: {
+          orderBy: {
+            createdAt: "desc"
+          }
+        },
+      }
     });
 
     await pusherServer.trigger(
@@ -58,7 +62,7 @@ export async function POST(request: Request) {
       conversationId.toString(),
       'conversation:update',
       updatedConversation
-  );
+   );
   
     return NextResponse.json(newMessage);
   } catch (error: any) {
