@@ -11,6 +11,7 @@ const useConversation = () => {
 
     return params.id
   }, [params?.id])
+  
   return useMemo(() => ({
     conversationId
   }), [conversationId])

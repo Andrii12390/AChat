@@ -12,37 +12,28 @@ export const authOptions: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials, req) {
-        if (!credentials) {
-          return null;
-        }
+        if (!credentials) return null;
 
-        const values = {
-          username: credentials.username,
-        };
+        const values = { username: credentials.username };
 
         const user = await prisma.user.findFirst({
           where: values,
         });
 
-        if (!user) {
-          return null;
-        }
+        if (!user) return null;
+
         const isMatch = await bcrypt.compare(
           credentials.password,
           user.password
         );
-        if (!isMatch) {
-          return null;
-        }
+
+        if (!isMatch) return null;
 
         return {
           id: user.id.toString(), 
           name: user.username,
-          password: user.password,
           avatarColor: user.avatarColor,
-          avatar: user.avatar,
-          createdAt: user.createdAt,
-          updatedAt: user.updatedAt,
+          avatar: user.avatar
         };
       },
     }),

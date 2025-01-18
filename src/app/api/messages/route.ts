@@ -65,3 +65,27 @@ export async function POST(request: Request) {
     return new NextResponse("[Message:create] error", { status: 500 });
   }
 }
+
+export async function GET(request: Request) {
+  try {
+
+    const { searchParams } = new URL(request.url);
+    const conversationId = searchParams.get("id");
+
+    const messages = await prisma.message.findMany({
+      where: {
+        conversationId: parseInt(conversationId),
+      },
+      include: {
+        sender: true,
+      },
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
+
+    return NextResponse.json(messages);
+  } catch (error: any) {
+    console.error(error)
+  }
+}

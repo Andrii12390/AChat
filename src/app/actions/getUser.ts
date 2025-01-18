@@ -8,10 +8,18 @@ export const getUser = async () => {
     const user = await prisma.user.findFirst({
       where: {
         username: session?.user?.name || "",
-      },
+      }
     });
 
-    return user;
+    if (!user) return null;
+
+    return {
+      id: user.id,
+      username: user.username,
+      avatar: user.avatar,
+      avatarColor: user.avatarColor,
+    };
+    
   } catch (error: any) {
     return null;
   }

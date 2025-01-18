@@ -8,7 +8,7 @@ import { User } from "@prisma/client";
 
 interface SidebarProps {
   children: React.ReactElement;
-  user: User;
+  user: Omit<User, 'password' | 'createdAt' | 'updatedAt'>;
   isLoading?: boolean
 }
 

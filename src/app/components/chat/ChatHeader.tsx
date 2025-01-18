@@ -3,10 +3,9 @@
 import { Conversation, User } from "@prisma/client";
 import { ChevronLeft, EllipsisVertical } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
-import { useState } from "react";
-import { Avatar } from "@/components";
 import { useTranslations } from "use-intl";
-import { ChatDelete } from "@/components";
+import { useState } from "react";
+import { ChatDelete, Avatar } from "@/components";
 
 interface ChatHeaderProps {
   conversation: Conversation & {
@@ -18,7 +17,7 @@ interface ChatHeaderProps {
       avatar: string | undefined;
     }[];
   };
-  user: User | null;
+  user: Omit<User, "password" | "createdAt" | "updatedAt">;
 }
 
 export const ChatHeader = ({ conversation, user }: ChatHeaderProps) => {

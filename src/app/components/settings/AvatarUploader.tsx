@@ -3,8 +3,8 @@
 import  axios from "axios";
 import { SquarePen, Upload, X } from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
-import { useState } from "react";
 import { useTranslations } from "use-intl";
+import { useState } from "react";
 
 interface AvatarUploaderProps {
   avatar: string | null | undefined;
@@ -17,13 +17,13 @@ export const AvatarUploader = ({ avatar }: AvatarUploaderProps) => {
   const handleUploadSuccess = (results: any) => {
     const uploadedUrl = results?.info?.secure_url;
     if (uploadedUrl) {
-      axios.post("/api/users/avatar/upload", { avatar: uploadedUrl });
+      axios.post("/api/users/avatar", { avatar: uploadedUrl });
       setIsUploaded(true);
     }
   };
 
   const handleDelete = () => {
-    axios.post("/api/users/avatar/delete", {});
+    axios.delete("/api/users/avatar", {});
     setIsUploaded(false);
   };
 

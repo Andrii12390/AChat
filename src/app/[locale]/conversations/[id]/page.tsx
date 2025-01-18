@@ -1,48 +1,48 @@
-import {
-  getUser,
-  getChatById,
-  getMessages,
-  getAllConversations,
-} from "@/actions";
+"use client"
+
 import {
   ChatHeader,
-  ConversationList,
+  Loader,
   MessageComposer,
   MessageList,
-  MobileSidebar,
-  Sidebar,
 } from "@/components";
+import { useQuery} from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const Chat = async ({ params }: { params: { id: string } }) => {
+const Chat = ({ params }: { params: { id: string } }) => {
   const chatId = parseInt(params.id);
-  const conversation = await getChatById(chatId);
+  const [user, setUser] = useState(null);
 
-  const messages = await getMessages(chatId);
+  const conversation = useQuery({
+    queryKey: [`conversation${chatId}`],
+    queryFn: () => fetch(`/api/conversations?id=${chatId}`).then((res) => res.json()),
+  });
 
-  const user = await getUser();
+  const messages = useQuery({
+    queryKey: [`messages${chatId}`],
+    queryFn: () => fetch(`/api/messages?id=${chatId}`).then((res) => res.json()),
+  });
 
-  const conversations = await getAllConversations();
+  useEffect(() => {
+    async function getUser() {
+      const res = await axios.get("/api/users")
+      setUser(res.data)
+    }
+    getUser()
+  }, [])
 
-  if (!conversation.participants) {
-    return (
-      <main className="lg:pl-72 md:pl-72 pt-72 h-full flex justify-center font-semibold text-xl">
-        Chat not found
-      </main>
-    );
-  }
   return (
-    <main className="h-full">
-      <Sidebar user={user!}>
-        <ConversationList list={conversations} currentUser={user!} />
-      </Sidebar>
-      <MobileSidebar user={user!}>
-        <ConversationList list={conversations} currentUser={user!} />
-      </MobileSidebar>
-      <div className="h-full lg:ml-72 md:ml-72 flex flex-col bg-background">
-        <ChatHeader conversation={conversation} user={user} />
-        <MessageList messages={messages} />
-        <MessageComposer />
-      </div>
+    <main className="h-full lg:ml-72 md:ml-72 flex flex-col bg-background overflow-hidden">
+      {(!user || conversation.isLoading || messages.isLoading) ? (
+        <Loader />
+      ): (
+        <>
+          <ChatHeader conversation={conversation.data} user={user} />
+          <MessageList messages={messages.data} />
+          <MessageComposer />
+        </>
+      )}
     </main>
   );
 };

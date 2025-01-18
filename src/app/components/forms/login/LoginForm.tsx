@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter, Link } from "@/i18n/routing";
 import { signIn, useSession } from "next-auth/react";
@@ -9,7 +9,7 @@ import { UserRound, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 
-import {loginValidationRules, passwordValidationRules} from "./validation";
+import { loginValidationRules, passwordValidationRules } from "./validation";
 
 type TLoginForm = {
   username: string;

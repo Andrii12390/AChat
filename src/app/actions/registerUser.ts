@@ -8,15 +8,16 @@ interface registerUserProps {
   password: string;
 }
 
+const colors = [
+  "bg-yellow-500",
+  "bg-red-500",
+  "bg-green-500",
+  "bg-blue-500",
+  "bg-sky-500",
+];
+
 export const registerUser = async ({ username, password }: registerUserProps ) => {
   try {
-    const colors = [
-      "bg-yellow-500",
-      "bg-red-500",
-      "bg-green-500",
-      "bg-blue-500",
-      "bg-sky-500",
-    ];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     const user = await prisma.user.findFirst({
@@ -25,9 +26,7 @@ export const registerUser = async ({ username, password }: registerUserProps ) =
       },
     });
 
-    if (user) {
-      throw new Error("User with this username already exists");
-    }
+    if (user) throw new Error("User with this username already exists");
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -38,6 +37,7 @@ export const registerUser = async ({ username, password }: registerUserProps ) =
         avatarColor: color,
       },
     });
+    
     return true;
   } catch (error: any) {
     return null;

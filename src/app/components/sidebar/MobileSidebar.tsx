@@ -3,12 +3,12 @@
 import { LogOut } from "lucide-react";
 import { SidebarItem, Settings, Loader } from "@/components";
 import { signOut } from "next-auth/react";
-import useRoutes from "@/hooks/useRoutes";
 import { User } from "@prisma/client";
+import useRoutes from "@/hooks/useRoutes";
 
 interface SidebarProps {
   children: React.ReactElement;
-  user: User;
+  user: Omit<User, 'password' | 'createdAt' | 'updatedAt'>;
   isLoading?: boolean
 }
 

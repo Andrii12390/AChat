@@ -14,7 +14,7 @@ export const DeleteAccount = () => {
 
   const onClick = async () => {
     try {
-      axios.post("/api/users/delete").then(() => {
+      axios.delete("/api/users").then(() => {
         signOut();
         router.push("/");
       });

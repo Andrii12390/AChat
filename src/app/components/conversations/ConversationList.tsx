@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { CustomConversation } from "@/types";
+import type { CustomConversation } from "@/types";
 import { ConversationItem, SearchInput } from "@/components";
 import { User } from "@prisma/client";
 import { pusherClient } from "@/libs/pusher";
 import { find } from "lodash";
-import { useSession } from "next-auth/react";
 
 interface ConversationListProps {
   list: CustomConversation[];
@@ -17,8 +16,8 @@ export const ConversationList = ({
   list,
   currentUser,
 }: ConversationListProps) => {
-  const [listItems, setList] = useState(list);
-  const [searchText, setSearchText] = useState("");
+  const [listItems, setList] = useState<CustomConversation[]>(list);
+  const [searchText, setSearchText] = useState<string>("");
 
   const searchedUserList = useMemo(() => {
     return listItems.filter((item) => {
@@ -33,24 +32,14 @@ export const ConversationList = ({
 
 
   useEffect(() => {
-
     const pusherKey = currentUser.username;
 
     pusherClient.subscribe(pusherKey);
-
-    const subscribeToConversations = () => {
-      listItems.forEach((conversation) => {
-        pusherClient.subscribe(conversation.id.toString());
-      });
-    };
-    
-     const unsubscribeFromConversations = () => {
-          listItems.forEach((conversation) => {
-               pusherClient.unsubscribe(conversation.id.toString());
-          });
-     };
-
-    subscribeToConversations()
+  
+    listItems.forEach((conversation) => {
+      pusherClient.subscribe(conversation.id.toString());
+    });
+  
 
     const newConversationHandler = (conversation: CustomConversation) => {
       setList((prevItems) => {
@@ -83,19 +72,17 @@ export const ConversationList = ({
 
     pusherClient.bind("conversation:new", newConversationHandler);
     pusherClient.bind("conversation:delete", deleteConversationHandler);
-    
-
     pusherClient.bind('conversation:update', updateConversationHandler);
 
     return () => {
       pusherClient.unsubscribe(pusherKey);
-      unsubscribeFromConversations()
+      listItems.forEach((conversation) => {
+        pusherClient.unsubscribe(conversation.id.toString());
+      });
+
       pusherClient.unbind("conversation:new", newConversationHandler);
       pusherClient.unbind("conversation:delete", deleteConversationHandler);
-
-      listItems.forEach(_ => {
-             pusherClient.unbind('conversation:update', updateConversationHandler);
-        })
+      pusherClient.unbind('conversation:update', updateConversationHandler);
     };
   }, [listItems, currentUser]);
 

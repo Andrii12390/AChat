@@ -1,12 +1,13 @@
-import { TValidationRules } from "@/types";
-import React from "react";
+import type { LucideIcon } from "lucide-react";
+import type { TValidationRules } from "@/types";
+
 import { UseFormRegister } from "react-hook-form";
 
 interface FormInputProps {
   type: string;
   placeholder: string;
   name: string;
-  Icon: React.ElementType;
+  Icon: LucideIcon;
   register: UseFormRegister<any>;
   validationRules: TValidationRules; 
   errors: any;

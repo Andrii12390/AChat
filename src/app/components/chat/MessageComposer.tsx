@@ -7,11 +7,14 @@ import { MessageInput } from "@/components";
 import { Send, Image as Img} from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
 import { useTranslations } from "use-intl";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const MessageComposer = () => {
   const t = useTranslations("ConversationsPage");
 
   const { conversationId } = useConversation();
+  
+  const queryClient = useQueryClient()
 
   const { register, handleSubmit, setValue } = useForm<FieldValues>({
     defaultValues: {
@@ -24,14 +27,18 @@ export const MessageComposer = () => {
     axios.post("/api/messages", {
       ...data,
       conversationId: Number(conversationId),
-    });
+    }).then(() =>
+      queryClient.invalidateQueries({queryKey: [`messages${conversationId}`]})
+    );
   };
-
+  
   const handleUploadSuccess = (results: any) => {
     axios.post('/api/messages', {
       conversationId: Number(conversationId),     
       image: results?.info?.secure_url,   
-    })
+    }).then(() =>
+      queryClient.invalidateQueries({queryKey: [`messages${conversationId}`]})
+    )
   };
 
   return (

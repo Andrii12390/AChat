@@ -24,6 +24,7 @@
       "@/libs/*": ["./app/libs/*"],
       "@/hooks/*": ["./app/hooks/*"],
       "@/utils/*": ["./app/utils/*"],
+      "@/providers": ["./app/providers"],
     },
     "plugins": [
       {

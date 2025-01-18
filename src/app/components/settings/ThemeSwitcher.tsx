@@ -19,10 +19,7 @@ export const ThemeSwitcher = () => {
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
         <button className="flex items-center justify-center">
-          <SunMoon
-            size={20}
-            className={`${theme === "light" ? "text-black" : "text-white"}`}
-          />
+          <SunMoon size={20}/>
         </button>
         <div className="text-sm ">
           {t("theme.switch")}

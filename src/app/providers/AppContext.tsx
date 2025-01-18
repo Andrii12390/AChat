@@ -1,10 +1,8 @@
-import { SessionContext, ThemeContext, ToasterContext } from "../context";
-import React from "react";
+import { SessionContext, ThemeContext, ToasterContext, TanstackProvider } from "@/providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { TanstackProvider } from "./TanstackQueryContext";
 
-const AppContext = async ({ children }: { children: React.ReactNode }) => {
+export const AppContext = async ({ children }: { children: React.ReactNode }) => {
   const messages = await getMessages();
 
   return (
@@ -21,4 +19,3 @@ const AppContext = async ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default AppContext;

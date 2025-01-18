@@ -1,8 +1,8 @@
 "use client";
 
+import type { extendedMessage } from "@/types";
 import { format } from "date-fns";
 import { useSession } from "next-auth/react";
-import { extendedMessage } from "@/types";
 import { CldImage } from "next-cloudinary";
 
 interface IMessageItem {
@@ -18,8 +18,8 @@ export function MessageItem({ data }: IMessageItem) {
     <div
       className={`flex flex-col max-w-[60%] h-max rounded-xl words-break ${
         isCurrentUserMessage
-          ? "ml-auto m-2 bg-secondary rounded-br-none"
-          : "mr-auto ml-2 rounded-bl-none bg-primary"
+          ? "ml-auto m-2 bg-message-secondary rounded-br-none"
+          : "mr-auto ml-2 rounded-bl-none bg-message-primary"
       } px-2 py-1`}
     >
       {data.image && (

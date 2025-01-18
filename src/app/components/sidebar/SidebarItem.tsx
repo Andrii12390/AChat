@@ -2,11 +2,14 @@
 
 import { Link } from "@/i18n/routing";
 
+import type { LucideIcon } from "lucide-react";
+
 interface SidebarItemProps {
   isActive: boolean;
   href: string;
-  icon: any;
+  icon: LucideIcon;
 }
+
 export const SidebarItem = ({href, isActive, icon: Icon, }: SidebarItemProps) => {
   return (
     <li className="p-1 hover:bg-hover transition-colors rounded-md">

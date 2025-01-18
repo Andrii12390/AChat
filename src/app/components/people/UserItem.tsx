@@ -1,10 +1,8 @@
-"use client";
-
 import { User } from "@prisma/client";
 import { useRouter } from "@/i18n/routing";
 import { Pencil } from "lucide-react";
 import { Avatar } from "@/components";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface UserItemProps {
   data: User;
@@ -15,29 +13,27 @@ export const UserItem = ({ data }: UserItemProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationKey: ["delete conversation"],
+    mutationKey: ["create conversation"],
     mutationFn: () =>
-      fetch("/api/conversations/create", {
+      fetch("/api/conversations", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({ userId: data.id }),
-      }).then((res) => res.json()),
-
+      }).then((res) => {
+        queryClient.invalidateQueries({queryKey: ["conversations"]})
+        return res.json()
+      }),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["conversations"] });
       router.push(`/conversations/${data}`);
-    },
-    onError: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["conversations"] });
-      router.push(`/conversations/${data}`);
-    },
+    }
   });
-
+  
   const onClick = async () => {
     try {
       mutate();
+      router.push(`/conversations`);
     } catch (error: any) {
       console.error(error);
     }

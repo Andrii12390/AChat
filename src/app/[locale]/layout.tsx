@@ -1,7 +1,6 @@
-import React from "react";
-import "./globals.css";
-import AppContext from "app/context/AppContext";
 import { Metadata } from "next";
+import { AppContext } from "@/providers";
+import "./globals.css";
 
 const metadata: Metadata = {
   title: "Achat",

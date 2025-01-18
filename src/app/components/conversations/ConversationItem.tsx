@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useRouter } from "@/i18n/routing";
 import { User } from "@prisma/client";
 import { CustomConversation } from "@/types";
-import useParticipant from "@/hooks/useParticipant";
 import { Avatar } from "@/components";
 import { useTranslations } from "use-intl";
+import useParticipant from "@/hooks/useParticipant";
 
 interface ConversationItemProps {
   data: CustomConversation;
@@ -20,9 +20,9 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
 
   const router = useRouter();
 
-  const onClick = useCallback(() => {
+  const handleClick = () => {
     router.push(`/conversations/${data.id}`);
-  }, [data.id, router]);
+  }
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
@@ -43,7 +43,7 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
   
   return (
     <div
-      onClick={onClick}
+      onClick={handleClick}
       className="py-2 flex items-center border-b border-border gap-x-2 cursor-pointer"
     >
       <Avatar

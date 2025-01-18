@@ -4,7 +4,6 @@ import { Trash2 } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "use-intl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 interface IChatDelete {
   conversationId: number;
@@ -19,20 +18,16 @@ export const ChatDelete = ({ conversationId, onClose }: IChatDelete) => {
   const { mutate } = useMutation({
     mutationKey: ["delete conversation"],
     mutationFn: () =>
-      fetch("/api/conversations/delete", {
-        method: "POST",
+      fetch("/api/conversations", {
+        method: "DELETE",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({ conversationId: conversationId }),
-      }).then((res) => res.json()),
-     
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["conversations"] });
-    },
-    onError: () => {
-      queryClient.invalidateQueries({ queryKey: ["conversations"] });
-    }
+      }).then((res) => {
+        queryClient.invalidateQueries({queryKey: ["conversations"]})
+        return res.json()
+      })
   });
 
   const handleDelete = async () => {
