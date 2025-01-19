@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import type { CustomConversation } from "@/types";
+import type { User } from "@prisma/client";
+import { useEffect, useMemo, useState } from "react";
 import { ConversationItem, SearchInput } from "@/components";
-import { User } from "@prisma/client";
 import { pusherClient } from "@/libs/pusher";
 import { find } from "lodash";
 
@@ -30,7 +30,6 @@ export const ConversationList = ({
     });
   }, [searchText, listItems, currentUser]);
 
-
   useEffect(() => {
     const pusherKey = currentUser.username;
 
@@ -39,13 +38,11 @@ export const ConversationList = ({
     listItems.forEach((conversation) => {
       pusherClient.subscribe(conversation.id.toString());
     });
-  
 
     const newConversationHandler = (conversation: CustomConversation) => {
       setList((prevItems) => {
-        if (find(prevItems, { id: conversation.id })) {
-          return prevItems;
-        }
+        if (find(prevItems, { id: conversation.id })) return prevItems;
+
         return [conversation, ...prevItems];
       });
     };
@@ -59,12 +56,11 @@ export const ConversationList = ({
     const updateConversationHandler = (conversation: CustomConversation) => {
       setList((prevItems) => {
           return prevItems.map(item => {
-            if (item.id === conversation.id) {
+            if (item.id === conversation.id) 
               return {
                 ...item,
                 messages: conversation.messages,
               };
-            }
              return item
           });
       });
@@ -85,6 +81,7 @@ export const ConversationList = ({
       pusherClient.unbind('conversation:update', updateConversationHandler);
     };
   }, [listItems, currentUser]);
+
 
   return (
     <div className="overflow-y-auto px-3 no-scrollbar flex-1">

@@ -27,3 +27,4 @@ export { SearchInput } from "./shared/SearchInput";
 export { LocaleSwitcher } from "./settings/LocaleSwitcher";
 export { ChatDelete } from "./chat/ChatDelete";
 export { Loader } from "./shared/Loader";
+export { ScrollButton } from "./shared/ScrollButton";

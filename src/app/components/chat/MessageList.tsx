@@ -1,11 +1,12 @@
-"use client";
+'use client'
 
+import type { extendedMessage } from "@/types";
 import { useEffect, useRef, useState } from "react";
-import { MessageItem } from "@/components";
+import { MessageItem, ScrollButton } from "@/components";
 import { pusherClient } from "@/libs/pusher";
 import { find } from "lodash";
-import { extendedMessage } from "@/types";
 import useConversation from "@/hooks/useConversation";
+
 
 interface MessageListProps {
   messages: extendedMessage[];
@@ -13,24 +14,21 @@ interface MessageListProps {
 
 export function MessageList({ messages }: MessageListProps) {
   const [currentMessages, setCurrentMessages] = useState(messages);
+  const { conversationId } = useConversation();
 
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  const { conversationId } = useConversation();
+  const messageListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     pusherClient.subscribe(conversationId.toString());
-    bottomRef?.current?.scrollIntoView();
 
     const createHandler = (message: extendedMessage) => {
       setCurrentMessages((current) => {
         if (find(current, { id: message.id })) {
           return current;
         }
-
         return [...current, message];
       });
-      bottomRef?.current?.scrollIntoView();
     };
 
     pusherClient.bind("messages:new", createHandler);
@@ -41,8 +39,13 @@ export function MessageList({ messages }: MessageListProps) {
     };
   }, [conversationId]);
 
+  useEffect(() => {
+    bottomRef?.current?.scrollIntoView();
+  }, [currentMessages]);
+
   return (
-    <div className="flex-1 overflow-y-auto flex flex-col no-scrollbar gap-3 pt-4 px-2">
+    <div ref={messageListRef} className="h-full overflow-y-scroll no-scrollbar flex flex-col gap-3 pt-4 px-2">
+      <ScrollButton containerRef={messageListRef} />
       {currentMessages.map((message) => (
         <MessageItem key={message.id} data={message} />
       ))}
@@ -50,3 +53,6 @@ export function MessageList({ messages }: MessageListProps) {
     </div>
   );
 }
+
+
+
