@@ -17,8 +17,8 @@ export const ScrollButton = ({ containerRef }: ScrollButtonProps) => {
       if (container) {
         const scrolled = container.scrollTop;
         const maxScroll = container.scrollHeight - container.clientHeight;
-
-        if (scrolled > 0 && scrolled < maxScroll) setVisible(true);
+        
+        if (scrolled && scrolled < maxScroll - 10) setVisible(true);
         else setVisible(false);
       }
     };
