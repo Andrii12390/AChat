@@ -8,6 +8,7 @@ import {
 } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useEffect, useState } from "react";
 
@@ -16,16 +17,18 @@ const Chat = ({ params }: { params: { id: string } }) => {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
+  const locale = useLocale();
+  
   const conversation = useQuery({
     queryKey: [`conversation${chatId}`],
     queryFn: () => fetch(`/api/conversations?id=${chatId}`).then((res) => res.json()),
   });
-
+  
   const messages = useQuery({
     queryKey: [`messages${chatId}`],
     queryFn: () => fetch(`/api/messages?id=${chatId}`).then((res) => res.json()),
   });
-
+  
   useEffect(() => {
     async function getUser() {
       const res = await axios.get("/api/users");
@@ -33,10 +36,10 @@ const Chat = ({ params }: { params: { id: string } }) => {
     }
     getUser();
   }, []);
-
+  
   useEffect(() => {
     const handlePress = (e: KeyboardEvent) => {
-      if (e.key === "Escape") router.push("/conversations");
+      if (e.key === "Escape") router.push(`/${locale}/conversations`);
     };
 
     document.addEventListener("keydown", (e) => handlePress(e as unknown as KeyboardEvent));

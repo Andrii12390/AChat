@@ -8,7 +8,6 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { usePathname } from "next/navigation";
-import user from "pusher-js/types/src/core/user";
 import { useEffect, useState } from "react";
 
 const Layout = ({ children }: {children: React.ReactNode}) => {
