@@ -16,8 +16,8 @@ export const Sidebar = ({ children, user, isLoading }: SidebarProps) => {
   const routes = useRoutes();
 
   return (
-    <aside className="sm:hidden lg:block md:block fixed w-72 overflow-y-auto no-scrollbar h-dvh border-r border-border">
-      <div className="w-14 flex flex-col justify-between items-center fixed h-dvh border-r border-border py-1">
+    <nav className="sm:hidden lg:block md:block fixed w-72 overflow-y-auto no-scrollbar h-dvh border-r border-border">
+      <aside className="w-14 flex flex-col justify-between items-center fixed h-dvh border-r border-border py-1">
         <ul className="flex flex-col gap-y-5 items-center p-2">
           {routes.map((item) => (
             <SidebarItem
@@ -35,14 +35,14 @@ export const Sidebar = ({ children, user, isLoading }: SidebarProps) => {
         >
           <LogOut size={25} />
         </div>
-      </div>
-      <div className="ml-14">
+      </aside>
+      <main className="ml-14">
        {isLoading ? (
           <Loader/>
         ): 
          children
         }
-      </div>
-    </aside>
+      </main>
+    </nav>
   );
 };

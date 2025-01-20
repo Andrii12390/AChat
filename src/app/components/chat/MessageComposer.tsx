@@ -111,6 +111,7 @@ export const MessageComposer = () => {
               className="no-scrollbar"
               theme={theme as Theme}
               onEmojiClick={onEmojiClick}
+              autoFocusSearch={false}
             />
           </div>
         )}

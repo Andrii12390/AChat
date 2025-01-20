@@ -14,7 +14,7 @@ import { loginValidationRules, passwordValidationRules } from "./validation";
 type TLoginForm = {
   username: string;
   password: string;
-}
+};
 
 export const LoginForm = () => {
   const t = useTranslations("LoginPage");
@@ -62,11 +62,12 @@ export const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-60 p-2 h-fit flex flex-col gap-y-4"
+      className="mt-60 p-2 h-fit flex flex-col gap-y-4 "
     >
-      <h1 className="text-center text-2xl text-gray-800 font-semibold">
+      <h1 className="text-center text-2xl text-gray-800 font-semibold animate-fade-up">
         {t("form.title")}
       </h1>
+
       <FormInput
         type="text"
         placeholder={t("form.placeholder.username")}
@@ -76,7 +77,8 @@ export const LoginForm = () => {
         validationRules={loginValidationRules}
         errors={errors}
       />
-      <FormInput 
+
+      <FormInput
         type="password"
         placeholder={t("form.placeholder.password")}
         name="password"
@@ -85,7 +87,10 @@ export const LoginForm = () => {
         validationRules={passwordValidationRules}
         errors={errors}
       />
-      <Link href="/registration" className="text-xs text-gray-600 ml-1">
+      <Link
+        href="/registration"
+        className="text-xs text-gray-600 ml-1"
+      >
         {t("signUpLink.text")}
       </Link>
       <div className="flex justify-center">

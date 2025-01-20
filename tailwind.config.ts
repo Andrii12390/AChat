@@ -2,9 +2,9 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{ts,tsx}",
+    "./src/components/**/*.{ts,tsx}",
+    "./src/app/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -24,6 +24,9 @@ const config: Config = {
         popover: "hsl(var(--popover))",
         input: "hsl(var(--input))",
         hover: "hsl(var(--hover))",
+        muted: {
+          foreground: "hsl(var(--muted-foreground))"
+        },
         message: {
           primary: "hsl(var(--message-primary))",
           secondary: "hsl(var(--message-secondary))",
@@ -37,12 +40,14 @@ const config: Config = {
       },
     },
     screens: {
-      sm: "300px",
+      sm: "400px",
       md: "750px",
       lg: "1440px",
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
   darkMode: "class",
 };
 

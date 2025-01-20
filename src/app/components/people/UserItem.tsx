@@ -40,7 +40,7 @@ export const UserItem = ({ data }: UserItemProps) => {
   };
 
   return (
-    <div className="w-full border-b border-border py-2 flex gap-x-3">
+    <div className="w-full border-b border-border py-2 flex gap-x-3 animate-fade-right">
       <Avatar
         color={data.avatarColor}
         avatar={data.avatar}

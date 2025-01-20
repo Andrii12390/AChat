@@ -16,7 +16,7 @@ export const MobileSidebar = ({ children, user, isLoading }: SidebarProps) => {
   const routes = useRoutes();
 
   return (
-    <aside className="lg:hidden md:hidden flex flex-col h-screen">
+    <nav className="lg:hidden md:hidden flex flex-col h-screen">
       <main className="flex-1 overflow-y-auto no-scrollbar">
         {isLoading ? (
           <Loader />
@@ -44,6 +44,6 @@ export const MobileSidebar = ({ children, user, isLoading }: SidebarProps) => {
           </div>
         </ul>
       </footer>
-    </aside>
+    </nav>
   );
 };

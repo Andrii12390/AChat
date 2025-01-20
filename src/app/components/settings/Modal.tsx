@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import { X } from "lucide-react";
 
 interface ModalProps {
@@ -7,10 +10,23 @@ interface ModalProps {
 }
 
 export const Modal = ({ isOpen, handleClose, children }: ModalProps) => {
+
+  useEffect(() => {
+    const handlePress = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+
+    document.addEventListener("keydown", handlePress);
+
+    return () => {
+      document.removeEventListener("keydown", handlePress);
+    };
+  }, [handleClose]);
+
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 bg-muted blur-xl" />
+        <div className="fixed inset-0 bg-white/70 dark:bg-black/50 blur-xl" />
       )}
       <div
         onClick={handleClose}

@@ -41,7 +41,7 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
   return (
     <div
       onClick={handleClick}
-      className="py-2 flex items-center border-b border-border gap-x-2 cursor-pointer"
+      className="py-2 flex items-center border-b border-border gap-x-2 cursor-pointer animate-fade-right"
     >
       <Avatar
         color={data?.avatarColor}
@@ -52,7 +52,7 @@ export const ConversationItem = ({ data, currentUser }: ConversationItemProps) =
         <span className="text-sm max-w-52 overflow-hidden">
           {otherParticipant?.username}
         </span>
-        <span className="text-xs text-foreground-secondary max-w-52 overflow-hidden">
+        <span className="text-xs text-muted-foreground max-w-52 overflow-hidden">
           {lastMessageText}
         </span>
       </div>

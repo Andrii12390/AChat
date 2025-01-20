@@ -68,7 +68,7 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="mt-60 p-2 h-fit flex flex-col gap-y-4"
     >
-      <h1 className="text-center text-2xl text-gray-800 font-semibold">
+      <h1 className="text-center text-2xl text-gray-800 font-semibold animate-fade-up">
         {t('form.title')}
       </h1>
       <FormInput

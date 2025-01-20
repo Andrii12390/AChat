@@ -10,7 +10,7 @@ interface SidebarItemProps {
   icon: LucideIcon;
 }
 
-export const SidebarItem = ({href, isActive, icon: Icon, }: SidebarItemProps) => {
+export const SidebarItem = ({ href, isActive, icon: Icon }: SidebarItemProps) => {
   return (
     <li className="p-1 hover:bg-hover transition-colors rounded-md">
       <Link
