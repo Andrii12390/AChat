@@ -6,8 +6,9 @@ import {
   MessageComposer,
   MessageList,
 } from "@/components";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+
+import { useQuery } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useEffect, useState } from "react";
@@ -21,12 +22,12 @@ const Chat = ({ params }: { params: { id: string } }) => {
   
   const conversation = useQuery({
     queryKey: [`conversation${chatId}`],
-    queryFn: () => fetch(`/api/conversations?id=${chatId}`).then((res) => res.json()),
+    queryFn: () => axios.get(`/api/conversations?id=${chatId}`).then((res) => res.data),
   });
   
   const messages = useQuery({
     queryKey: [`messages${chatId}`],
-    queryFn: () => fetch(`/api/messages?id=${chatId}`).then((res) => res.json()),
+    queryFn: () => axios.get(`/api/messages?id=${chatId}`).then((res) => res.data),
   });
   
   useEffect(() => {

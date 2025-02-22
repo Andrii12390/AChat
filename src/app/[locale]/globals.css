@@ -5,6 +5,7 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -22,7 +23,7 @@ body {
 
     --primary: 217, 91%, 60%;
     --primary-foreground: 217, 91%, 60%;
-    
+
     --secondary: 210, 40%, 98%;
 
     --border: 0, 0%, 90%;
@@ -38,7 +39,7 @@ body {
     --message-primary: 214, 95%, 93%;
     --message-secondary: 210, 40%, 96%;
 
-    --muted-foreground: 0,0%,0%;
+    --muted-foreground: 0, 0%, 0%;
 
     --popover: 0, 0%, 100%;
   }
@@ -48,7 +49,7 @@ body {
 
     --primary: 239, 84%, 67%;
     --primary-foreground: 239, 84%, 67%;
-    
+
     --secondary: 0, 0%, 6%;
 
     --border: 0, 0%, 21%;
@@ -64,8 +65,8 @@ body {
     --message-primary: 239, 84%, 67%;
     --message-secondary: 0, 0%, 15%;
 
-    --muted-foreground: 216,12%,84%;
-    
+    --muted-foreground: 216, 12%, 84%;
+
     --popover: 0, 0%, 4%;
   }
 }

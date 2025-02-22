@@ -1,0 +1,84 @@
+{
+  "Shared": {
+    "search": {
+      "placeholder": "Rechercher"
+    }
+  },
+  "LoginPage": {
+    "title": "Se connecter",
+    "form": {
+      "title": "Connexion",
+      "button": "Se connecter",
+      "placeholder": {
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe"
+      }
+    },
+    "signUpLink": {
+      "text": "Vous n'avez pas de compte ?"
+    },
+    "toast": {
+      "successLogin": "Vous êtes connecté avec succès !",
+      "invalidCredentials": "Identifiants invalides !"
+    }
+  },
+  "RegistrationPage": {
+    "title": "S'inscrire",
+    "form": {
+      "title": "Inscription",
+      "button": "S'inscrire",
+      "placeholder": {
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe"
+      }
+    },
+    "signInLink": {
+      "text": "Vous avez déjà un compte ?"
+    },
+    "toast": {
+      "successRegistration": "Vous êtes inscrit avec succès !",
+      "passwordsDontMatch": "Les mots de passe ne correspondent pas !",
+      "failedLogin": "Échec de la connexion après l'inscription !"
+    }
+  },
+  "PeoplePage": {
+    "title": "Personnes",
+    "prompt": "Cliquez sur quelqu'un pour démarrer une conversation"
+  },
+  "ConversationsPage": {
+    "title": "Conversations",
+    "prompt": "Cliquez sur quelqu'un pour ouvrir une conversation",
+    "messagePlaceholder": "Tapez un message",
+    "online": "en ligne",
+    "deleteChat": "Supprimer la conversation",
+    "sentImage": "A envoyé une image",
+    "noMessages": "Pas encore de messages"
+  },
+  "Settings": {
+    "title": "Paramètres",
+    "theme": {
+      "title": "Thème de couleur",
+      "switch": "Changer"
+    },
+    "avatar": {
+      "title": "Avatar",
+      "upload": "Télécharger",
+      "delete": "Supprimer",
+      "update": "Mettre à jour"
+    },
+    "account": {
+      "title": "Compte",
+      "delete": "Supprimer",
+      "deleteError": "Erreur lors de la suppression du compte",
+      "deleteSuccess": "Compte supprimé avec succès"
+    },
+    "locale": {
+      "title": "Langue de l'application",
+      "uk": "Ukrainien",
+      "en": "Anglais",
+      "de": "Allemand",
+      "fr": "Français"
+    }
+  }
+}

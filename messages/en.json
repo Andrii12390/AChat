@@ -1,4 +1,9 @@
 {
+  "Shared": {
+    "search": {
+      "placeholder": "Search"
+    }
+  },
   "LoginPage": {
     "title": "Sign in",
     "form": {
@@ -39,10 +44,7 @@
   },
   "PeoplePage": {
     "title": "People",
-    "prompt": "Click on someone to start a chat",
-    "placeholder": {
-      "search": "Search"
-    }
+    "prompt": "Click on someone to start a chat"
   },
   "ConversationsPage": {
     "title": "Conversations",
@@ -67,11 +69,16 @@
     },
     "account": {
       "title": "Account",
-      "delete": "Delete"
+      "delete": "Delete",
+      "deleteError": "Error deleting account",
+      "deleteSuccess": "Account deleted successfully"
     },
     "locale": {
       "title": "App language",
-      "change": "Change to ukrainian"
+      "uk": "Ukrainian",
+      "en": "English",
+      "de": "German",
+      "fr": "French"
     }
   }
 }

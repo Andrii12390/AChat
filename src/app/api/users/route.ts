@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { prisma } from "@/prisma-client";
-import { authOptions } from "@/utils/authOptions";
+import { authOptions } from "utils/authOptions";
 import { NextResponse } from "next/server";
-import { getUser } from "@/actions";
+import { getUser } from "app/actions";
 
 export async function GET() {
   try {
@@ -21,7 +21,7 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function DELETE() {
   try {
     const currentUser = await getUser();
 

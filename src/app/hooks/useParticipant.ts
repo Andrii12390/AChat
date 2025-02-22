@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { CustomConversation } from "@/types";
+import { TCustomConversation } from "types";
 import { User } from "@prisma/client";
 
-const useParticipant = (conversation: CustomConversation, currentUser: User) => {
+const useParticipant = (conversation: TCustomConversation, currentUser: User) => {
   const participant = useMemo(() => {
     if (!conversation?.participants) {
       return null;

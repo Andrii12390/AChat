@@ -1,0 +1,84 @@
+{
+  "Shared": {
+    "search": {
+      "placeholder": "Suche"
+    }
+  },
+  "LoginPage": {
+    "title": "Anmelden",
+    "form": {
+      "title": "Anmeldung",
+      "button": "Anmelden",
+      "placeholder": {
+        "username": "Benutzername",
+        "password": "Passwort"
+      }
+    },
+    "signUpLink": {
+      "text": "Noch kein Konto?"
+    },
+    "toast": {
+      "successLogin": "Sie haben sich erfolgreich angemeldet!",
+      "invalidCredentials": "Ungültige Anmeldeinformationen!"
+    }
+  },
+  "RegistrationPage": {
+    "title": "Registrieren",
+    "form": {
+      "title": "Registrierung",
+      "button": "Registrieren",
+      "placeholder": {
+        "username": "Benutzername",
+        "password": "Passwort",
+        "confirmPassword": "Passwort bestätigen"
+      }
+    },
+    "signInLink": {
+      "text": "Bereits ein Konto?"
+    },
+    "toast": {
+      "successRegistration": "Sie haben sich erfolgreich registriert!",
+      "passwordsDontMatch": "Passwörter stimmen nicht überein!",
+      "failedLogin": "Anmeldung nach der Registrierung fehlgeschlagen!"
+    }
+  },
+  "PeoplePage": {
+    "title": "Personen",
+    "prompt": "Klicken Sie auf jemanden, um einen Chat zu starten"
+  },
+  "ConversationsPage": {
+    "title": "Unterhaltungen",
+    "prompt": "Klicken Sie auf jemanden, um einen Chat zu öffnen",
+    "messagePlaceholder": "Nachricht eingeben",
+    "online": "online",
+    "deleteChat": "Chat löschen",
+    "sentImage": "Ein Bild gesendet",
+    "noMessages": "Noch keine Nachrichten"
+  },
+  "Settings": {
+    "title": "Einstellungen",
+    "theme": {
+      "title": "Farbthema",
+      "switch": "Wechseln"
+    },
+    "avatar": {
+      "title": "Avatar",
+      "upload": "Hochladen",
+      "delete": "Löschen",
+      "update": "Aktualisieren"
+    },
+    "account": {
+      "title": "Konto",
+      "delete": "Löschen",
+      "deleteError": "Fehler beim Löschen des Kontos",
+      "deleteSuccess": "Konto erfolgreich gelöscht"
+    },
+    "locale": {
+      "title": "App-Sprache",
+      "uk": "Ukrainisch",
+      "en": "Englisch",
+      "de": "Deutsch",
+      "fr": "Französisch"
+    }
+  }
+}

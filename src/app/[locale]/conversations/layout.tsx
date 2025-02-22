@@ -5,8 +5,10 @@ import {
   MobileSidebar,
   Sidebar,
 } from "@/components";
-import { useQuery } from "@tanstack/react-query";
+
 import axios from "axios";
+
+import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -22,9 +24,10 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
     }
     getUser()
   }, [])
+  
   const conversations = useQuery({
     queryKey: ["conversations"],
-    queryFn: () => fetch("/api/conversations").then((res) => res.json()),
+    queryFn: () => axios.get("/api/conversations").then((res) => res.data),
   });
 
   return (

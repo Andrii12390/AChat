@@ -1,7 +1,7 @@
 import { prisma } from "@/prisma-client";
-import { getUser } from "@/actions";
+import { getUser } from "app/actions";
 import { NextResponse } from "next/server";
-import { pusherServer } from "@/libs/pusher";
+import { pusherServer } from "libs/pusher";
 
 export async function GET(request: Request) {
   const user = await getUser();

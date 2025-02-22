@@ -17,14 +17,15 @@
     "baseUrl": "src/",
     "paths": {
       "@/i18n/*": ["./i18n/*"],
-      "@/components": ["./app/components"],
+      "@/components": ["./components"],
       "@/prisma-client": ["../prisma/prisma-client"],
       "@/types": ["./app/types"],
       "@/actions": ["./app/actions"],
-      "@/libs/*": ["./app/libs/*"],
+      "@/libs/*": ["./libs/*"],
       "@/hooks/*": ["./app/hooks/*"],
-      "@/utils/*": ["./app/utils/*"],
+      "@/utils/*": ["./utils/*"],
       "@/providers": ["./app/providers"],
+      "@/constants": ["./_constants"],
     },
     "plugins": [
       {

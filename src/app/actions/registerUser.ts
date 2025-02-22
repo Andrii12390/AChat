@@ -40,6 +40,6 @@ export const registerUser = async ({ username, password }: registerUserProps ) =
     
     return true;
   } catch (error: any) {
-    return null;
+    throw new Error(error.message);
   }
 };

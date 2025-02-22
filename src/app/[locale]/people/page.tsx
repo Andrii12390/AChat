@@ -1,4 +1,4 @@
-import { ChatPrompt } from "../../components/";
+import { ChatPrompt } from "@/components";
 
 const People = () => {
   return (
