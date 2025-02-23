@@ -10,11 +10,13 @@ import axios from "axios";
 
 import { useQuery } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { KeyboardEvent, useEffect, useState } from "react";
 
 const Chat = ({ params }: { params: { id: string } }) => {
   const chatId = parseInt(params.id);
+  if (isNaN(chatId)) return notFound();
+
   const [user, setUser] = useState(null);
   const router = useRouter();
 

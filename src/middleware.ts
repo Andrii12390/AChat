@@ -6,37 +6,38 @@ import { PUBLIC_ROUTES } from "@/constants";
 
 import createMiddleware from "next-intl/middleware";
 
-
 const localizationMiddleware = createMiddleware(routing);
 
-async function authMiddleware(req: NextRequest, token: any): Promise<NextResponse | void> {
+async function authMiddleware(
+  req: NextRequest,
+  token: any
+): Promise<NextResponse | void> {
   const pathname = req.nextUrl.pathname;
   const isPublicRoute = PUBLIC_ROUTES.some((route) => pathname === route);
 
   const redirectUrl = req.nextUrl.clone();
 
-  if (pathname === '/') { 
-    redirectUrl.pathname = '/en';
+  if (pathname === "/") {
+    redirectUrl.pathname = "/en";
     return NextResponse.redirect(redirectUrl);
   }
 
   if (!token && !isPublicRoute) {
-    const locale = pathname.startsWith("/en") 
-    ? "/en" 
-    : pathname.startsWith("/uk") 
-    ? "/uk" 
-    : pathname.startsWith("/de") 
-    ? "de" 
-    : "/fr";
+    const locale = pathname.startsWith("/en")
+      ? "/en"
+      : pathname.startsWith("/uk")
+      ? "/uk"
+      : pathname.startsWith("/de")
+      ? "de"
+      : "/fr";
 
     redirectUrl.pathname = locale;
-    
+
     return NextResponse.redirect(redirectUrl);
   }
-    
-  return;
-}
 
+  return NextResponse.next();
+}
 
 export default async function middleware(req: NextRequest) {
   const token = await getToken({ req });
