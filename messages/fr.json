@@ -4,6 +4,11 @@
       "placeholder": "Rechercher"
     }
   },
+  "NotFoundPage": {
+    "heading": "Page introuvable",
+    "button": "Retour à la page précédente",
+    "imageAlt": "Image de page introuvable"
+  },
   "LoginPage": {
     "title": "Se connecter",
     "form": {

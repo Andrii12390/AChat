@@ -4,6 +4,11 @@
       "placeholder": "Пошук"
     }
   },
+  "NotFoundPage": {
+    "heading": "Сторінку не знайдено",
+    "button": "Повернутись",
+    "imageAlt": "Сторінку не знайдено картинка"
+  },
   "LoginPage": {
     "title": "Вхід",
     "form": {

@@ -4,6 +4,11 @@
       "placeholder": "Search"
     }
   },
+  "NotFoundPage": {
+    "heading": "Page not found",
+    "button": "Go back",
+    "imageAlt": "Page not found image"
+  },
   "LoginPage": {
     "title": "Sign in",
     "form": {

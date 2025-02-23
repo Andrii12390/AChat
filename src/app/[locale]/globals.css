@@ -12,12 +12,10 @@ body {
   display: none;
 }
 
-.words-break {
-  word-break: break-word;
-}
-
 @layer base {
   :root {
+    --default-color: hsl(0, 0%, 20%);
+
     --background: 0, 0%, 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -44,6 +42,8 @@ body {
     --popover: 0, 0%, 100%;
   }
   .dark {
+    --default-color: hsl(0, 0%, 100%);
+    
     --background: 0, 0%, 5%;
     --foreground: 222.2 84% 4.9%;
 
@@ -69,4 +69,8 @@ body {
 
     --popover: 0, 0%, 4%;
   }
+}
+
+body {
+  color: var(--default-color);
 }
