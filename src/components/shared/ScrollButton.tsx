@@ -23,14 +23,12 @@ export const ScrollButton = ({ containerRef }: ScrollButtonProps) => {
       }
     };
 
-    if (containerRef.current) {
-      containerRef.current.addEventListener("scroll", toggleVisible);
-    }
-
+    const container = containerRef.current;
+  
+    if (container) container.addEventListener("scroll", toggleVisible);
+    
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener("scroll", toggleVisible);
-      }
+      if (container) container.removeEventListener("scroll", toggleVisible);
     };
   }, [containerRef]);
 

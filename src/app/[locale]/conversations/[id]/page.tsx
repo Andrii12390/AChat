@@ -15,7 +15,6 @@ import { KeyboardEvent, useEffect, useState } from "react";
 
 const Chat = ({ params }: { params: { id: string } }) => {
   const chatId = parseInt(params.id);
-  if (isNaN(chatId)) return notFound();
 
   const [user, setUser] = useState(null);
   const router = useRouter();
@@ -25,11 +24,13 @@ const Chat = ({ params }: { params: { id: string } }) => {
   const conversation = useQuery({
     queryKey: [`conversation${chatId}`],
     queryFn: () => axios.get(`/api/conversations?id=${chatId}`).then((res) => res.data),
+    enabled: !isNaN(chatId)
   });
   
   const messages = useQuery({
     queryKey: [`messages${chatId}`],
     queryFn: () => axios.get(`/api/messages?id=${chatId}`).then((res) => res.data),
+    enabled: !isNaN(chatId)
   });
   
   useEffect(() => {
@@ -50,8 +51,13 @@ const Chat = ({ params }: { params: { id: string } }) => {
     return () => {
       document.removeEventListener("keydown", (e) => handlePress(e as unknown as KeyboardEvent));
     };
-  }, [router]);
+  }, [router, locale]);
 
+
+  if (isNaN(chatId)) {
+    return notFound();
+  }
+  
   return (
     <main className="h-full lg:ml-72 md:ml-72 flex flex-col bg-background overflow-hidden">
       {(!user || conversation.isLoading || messages.isLoading) ? (
