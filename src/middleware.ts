@@ -36,7 +36,7 @@ async function authMiddleware(
     return NextResponse.redirect(redirectUrl);
   }
 
-  return NextResponse.next();
+  return;
 }
 
 export default async function middleware(req: NextRequest) {
