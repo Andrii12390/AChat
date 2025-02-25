@@ -6,7 +6,7 @@ import axios from "axios";
 
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/routing";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
