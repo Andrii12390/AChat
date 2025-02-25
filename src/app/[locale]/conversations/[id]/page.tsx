@@ -24,13 +24,18 @@ const Chat = ({ params }: { params: { id: string } }) => {
   const conversation = useQuery({
     queryKey: [`conversation${chatId}`],
     queryFn: () => axios.get(`/api/conversations?id=${chatId}`).then((res) => res.data),
-    enabled: !isNaN(chatId)
+    enabled: !isNaN(chatId),
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
   });
   
   const messages = useQuery({
     queryKey: [`messages${chatId}`],
     queryFn: () => axios.get(`/api/messages?id=${chatId}`).then((res) => res.data),
-    enabled: !isNaN(chatId)
+    enabled: !isNaN(chatId),
+    gcTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
   });
   
   useEffect(() => {
@@ -53,11 +58,8 @@ const Chat = ({ params }: { params: { id: string } }) => {
     };
   }, [router, locale]);
 
+  if(isNaN(chatId)) return notFound();
 
-  if (isNaN(chatId)) {
-    return notFound();
-  }
-  
   return (
     <main className="h-full lg:ml-72 md:ml-72 flex flex-col bg-background overflow-hidden">
       {(!user || conversation.isLoading || messages.isLoading) ? (

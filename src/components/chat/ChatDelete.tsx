@@ -19,7 +19,6 @@ export const ChatDelete = ({ conversationId }: IChatDelete) => {
   const queryClient = useQueryClient();
   
   const { mutate } = useMutation({
-    mutationKey: ["delete conversation"],
     mutationFn: () => 
       axios.delete("/api/conversations", {
         data: JSON.stringify({ conversationId: conversationId }),
@@ -32,7 +31,7 @@ export const ChatDelete = ({ conversationId }: IChatDelete) => {
   const handleDelete = async () => {
     try {
       mutate();
-      router.push('/conversations')
+      router.push("/conversations");
     } catch (error: any) {
       console.error(error);
     }

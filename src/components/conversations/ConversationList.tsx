@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ConversationItem, SearchInput } from "@/components";
 import { pusherClient } from "libs/pusher";
 import { find } from "lodash";
+import { usePathname } from "next/navigation";
 
 interface ConversationListProps {
   list: TCustomConversation[];
@@ -16,6 +17,8 @@ export const ConversationList = ({
   list,
   currentUser,
 }: ConversationListProps) => {
+  const pathName = usePathname();
+
   const [listItems, setList] = useState<TCustomConversation[]>(list);
   const [searchText, setSearchText] = useState<string>("");
 
@@ -32,12 +35,13 @@ export const ConversationList = ({
 
   useEffect(() => {
     const pusherKey = currentUser.username;
+    
+    const id = pathName.split('/').pop();
 
     pusherClient.subscribe(pusherKey);
   
-    listItems.forEach((conversation) => {
-      pusherClient.subscribe(conversation.id.toString());
-    });
+    pusherClient.subscribe(id);
+
 
     const newConversationHandler = (conversation: TCustomConversation) => {
       setList((prevItems) => {
@@ -72,15 +76,14 @@ export const ConversationList = ({
 
     return () => {
       pusherClient.unsubscribe(pusherKey);
-      listItems.forEach((conversation) => {
-        pusherClient.unsubscribe(conversation.id.toString());
-      });
+
+      pusherClient.unsubscribe(id);
 
       pusherClient.unbind("conversation:new", newConversationHandler);
       pusherClient.unbind("conversation:delete", deleteConversationHandler);
       pusherClient.unbind('conversation:update', updateConversationHandler);
     };
-  }, [listItems, currentUser]);
+  }, [listItems, currentUser, pathName]);
 
 
   return (

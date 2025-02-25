@@ -1,19 +1,17 @@
 import { prisma } from "@/prisma-client";
-import { getUser } from "app/actions";
+import { getUser } from "@/actions";
 import { NextResponse } from "next/server";
 import { pusherServer } from "libs/pusher";
 
 export async function GET(request: Request) {
   const user = await getUser();
-
   const { searchParams } = new URL(request.url);
   const conversationId = searchParams.get("id");
-  
   if (conversationId) {
     try {
       const conversation = await prisma.conversation.findFirst({
         where: {
-          id: parseInt(conversationId),
+          id: +conversationId,
         },
         include: {
           participants: {
@@ -28,7 +26,7 @@ export async function GET(request: Request) {
           },
         },
       });
-
+      
       const participantsWithAvatarColor = conversation?.participants.map(participant => ({
         userId: participant.userId,
         conversationId: participant.conversationId,
@@ -36,7 +34,7 @@ export async function GET(request: Request) {
         username: participant.username,
         avatar: participant.user.avatar
       }));
-  
+      
       return NextResponse.json({
         ...conversation,
         participants: participantsWithAvatarColor,
