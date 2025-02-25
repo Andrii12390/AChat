@@ -6,9 +6,10 @@ import axios from "axios";
 
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-
+  const pathName = usePathname();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -29,9 +30,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main className="h-dvh">
+      {pathName === "/conversations" && (
       <MobileSidebar isLoading={!user || conversations.isLoading} user={user}>
         <ConversationList list={conversations.data} currentUser={user} />
       </MobileSidebar>
+      )}
       <Sidebar isLoading={!user || conversations.isLoading} user={user}>
         <ConversationList list={conversations.data} currentUser={user} />
       </Sidebar>
