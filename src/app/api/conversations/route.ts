@@ -149,13 +149,11 @@ export async function POST(request: Request) {
         }
       })
 
-      
       const extendedConversation = {
         ...newConversation,
         avatar: otherUser.avatar,
         avatarColor: otherUser.avatarColor as string
       }
-      
       
       await pusherServer.trigger(
         newConversation.participants[0].username,

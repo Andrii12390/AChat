@@ -15,25 +15,24 @@ export const UserItem = ({ data }: UserItemProps) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
-    mutationFn: (userId: number) => {
-      return axios
-        .post("/api/conversations", { userId: userId })
-        .then((res) => res.data);
-    },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["conversations"] });
-      router.push(`/conversations/${data}`); 
-    },
-    onError: (error) => {
-      console.error("Error creating conversation:", error);
-    },
+  const { mutateAsync } = useMutation({
+    mutationFn: async (userId: number) => {
+      try {
+        const res = await axios.post("/api/conversations", { userId });
+        return res.data;
+      } catch (error) {
+        throw error;
+      }
+    }
   });
-
-
+  
+  
+  
   const onClick = async () => {
     try {
-      mutate(data.id);
+      const res = await mutateAsync(data.id);
+      await queryClient.invalidateQueries({ queryKey: ["conversations"] });
+      router.push(`/conversations/${res}`);
     } catch (error: any) {
       console.error(error);
     }
@@ -41,14 +40,14 @@ export const UserItem = ({ data }: UserItemProps) => {
 
 
   return (
-    <div className="w-full border-b border-border py-2 flex gap-x-3 animate-fade-right">
+    <div className="w-full border-b border-border py-2 flex gap-x-3">
       <Avatar
         color={data.avatarColor}
         avatar={data.avatar}
         username={data.username}
       />
       <div className="flex flex-1 items-center justify-between">
-        <div className="max-w-28 overflow-hidden whitespace-nowrap overflow-ellipsis">
+        <div className="lg:max-w-28 md:max-w-28 sm:max-w-80 overflow-hidden whitespace-nowrap overflow-ellipsis">
           {data.username}
         </div>
         <div

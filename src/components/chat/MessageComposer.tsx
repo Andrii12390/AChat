@@ -37,12 +37,14 @@ export const MessageComposer = () => {
       if (
         pickerRef.current &&
         !pickerRef.current.contains(event.target as Node)
-      ) setIsOpenPicker(false);
+      )
+        setIsOpenPicker(false);
     };
 
-    if (isOpenPicker) document.addEventListener("mousedown", handleClickOutside);
+    if (isOpenPicker)
+      document.addEventListener("mousedown", handleClickOutside);
     else document.removeEventListener("mousedown", handleClickOutside);
-    
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -55,8 +57,8 @@ export const MessageComposer = () => {
         ...data,
         conversationId: +conversationId,
       });
-      queryClient.invalidateQueries({
-        queryKey: [`messages${conversationId}`],
+      await queryClient.invalidateQueries({
+        queryKey: [`conversations`],
       });
     } catch (err: any) {
       console.error(err);
@@ -69,8 +71,8 @@ export const MessageComposer = () => {
         conversationId: Number(conversationId),
         image: results?.info?.secure_url,
       });
-      queryClient.invalidateQueries({
-        queryKey: [`messages${conversationId}`],
+      await queryClient.invalidateQueries({
+        queryKey: [`conversations`],
       });
     } catch (err: any) {
       console.error(err);

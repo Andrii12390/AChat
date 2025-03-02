@@ -24,16 +24,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     queryKey: ["conversations"],
     queryFn: () => axios.get("/api/conversations").then((res) => res.data),
     gcTime: 0,
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
   });
 
   return (
     <main className="h-dvh">
       {pathName === "/conversations" && (
-      <MobileSidebar isLoading={!user || conversations.isLoading} user={user}>
-        <ConversationList list={conversations.data} currentUser={user} />
-      </MobileSidebar>
+        <MobileSidebar isLoading={!user || conversations.isLoading} user={user}>
+          <ConversationList list={conversations.data} currentUser={user} />
+        </MobileSidebar>
       )}
       <Sidebar isLoading={!user || conversations.isLoading} user={user}>
         <ConversationList list={conversations.data} currentUser={user} />

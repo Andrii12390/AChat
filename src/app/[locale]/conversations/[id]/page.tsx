@@ -1,10 +1,10 @@
 "use client";
 
-import {
+import { 
   ChatHeader,
   Loader,
   MessageComposer,
-  MessageList,
+  MessageList 
 } from "@/components";
 import axios from "axios";
 
@@ -20,24 +20,21 @@ const Chat = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
 
   const locale = useLocale();
-  
+
   const conversation = useQuery({
     queryKey: [`conversation${chatId}`],
     queryFn: () => axios.get(`/api/conversations?id=${chatId}`).then((res) => res.data),
     enabled: !isNaN(chatId),
     refetchOnMount: true,
-    refetchOnWindowFocus: true,
   });
   
   const messages = useQuery({
     queryKey: [`messages${chatId}`],
     queryFn: () => axios.get(`/api/messages?id=${chatId}`).then((res) => res.data),
     enabled: !isNaN(chatId),
-    gcTime: 0,
     refetchOnMount: true,
-    refetchOnWindowFocus: true,
   });
-  
+
   useEffect(() => {
     async function getUser() {
       const res = await axios.get("/api/users");
@@ -45,24 +42,28 @@ const Chat = ({ params }: { params: { id: string } }) => {
     }
     getUser();
   }, []);
-  
+
   useEffect(() => {
     const handlePress = (e: KeyboardEvent) => {
       if (e.key === "Escape") router.push(`/${locale}/conversations`);
     };
 
-    document.addEventListener("keydown", (e) => handlePress(e as unknown as KeyboardEvent));
+    document.addEventListener("keydown", (e) =>
+      handlePress(e as unknown as KeyboardEvent)
+    );
 
     return () => {
-      document.removeEventListener("keydown", (e) => handlePress(e as unknown as KeyboardEvent));
+      document.removeEventListener("keydown", (e) =>
+        handlePress(e as unknown as KeyboardEvent)
+      );
     };
   }, [router, locale]);
 
-  if(isNaN(chatId)) return notFound();
+  if (isNaN(chatId)) return notFound();
 
   return (
     <main className="h-full lg:ml-72 md:ml-72 flex flex-col bg-background overflow-hidden">
-      {(!user || conversation.isLoading || messages.isLoading) ? (
+      {!user || conversation.isLoading || messages.isLoading ? (
         <Loader />
       ) : (
         <>

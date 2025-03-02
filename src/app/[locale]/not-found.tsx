@@ -27,7 +27,6 @@ export default function NotFound() {
         <h1 className="lg:text-6xl md:text-6xl sm:text-5xl font-semibold sm:text-center -tracking-wide">
           {t("heading")}
         </h1>
-
         <button
           className="w-fit px-8 py-5 bg-primary transition-opacity hover:opacity-85 text-white font-semibold text-xl rounded-full flex items-center gap-2 group"
           onClick={handleRedirect}

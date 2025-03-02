@@ -19,15 +19,20 @@ export const ChatDelete = ({ conversationId }: IChatDelete) => {
   const queryClient = useQueryClient();
   
   const { mutate } = useMutation({
-    mutationFn: () => 
-      axios.delete("/api/conversations", {
-        data: JSON.stringify({ conversationId: conversationId }),
-      }).then((res) => {
-        queryClient.invalidateQueries({queryKey: ["conversations"]})
-        return res.data;
-      })
-  });
+    mutationFn: async () => {
+      try {
+        const res = await axios.delete("/api/conversations", {
+          data: JSON.stringify({ conversationId }),
+        });
+        await queryClient.invalidateQueries({ queryKey: ["conversations"] });
 
+        return res.data;
+      } catch (error) {
+        throw error;
+      }
+    },
+  });
+  
   const handleDelete = async () => {
     try {
       mutate();
